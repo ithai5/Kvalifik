@@ -10,12 +10,13 @@ import { Input } from '@angular/core';
 })
 export class EditPostComponent implements OnInit {
 
-  @Input() editablePost: Post;
+  editablePost: any;
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    console.log(this.route.snapshot.paramMap.get('id'));
+    this.editablePost = history.state.data.post;
+    console.log(this.editablePost);
   }
 
   openDialog(type: string): void {

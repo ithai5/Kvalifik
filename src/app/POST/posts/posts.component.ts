@@ -20,9 +20,14 @@ export class PostsComponent implements OnInit {
   viewPost(post: Post): void {
   }
   
-  editPost(editablePost: Post): void {
-    console.log(editablePost);
-    this.router.navigate(['/posts/edit/', {post: editablePost.content}])
+  editPost(editablePost?: Post): void {
+    if (editablePost === undefined) {
+      this.router.navigate(['/posts/edit/'], {state: {data: {post: {title: "Your title here...", content: "Your bla bla here..."}}}})
+    } else {
+        //VERY IMPORTANT LINE, THIS IS THE KEY POINT TO SUCCES, WITHOUT IT THE PROGRAM WOULDN'T WORK AT ALL
+        this.router.navigate(['/posts/edit/'], {state: {data: {post: editablePost}}})
+      }
+    
   }
 
   createPost(inputId: any): void {
