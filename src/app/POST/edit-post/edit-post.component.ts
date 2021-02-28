@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
+import { Post } from 'src/app/entities/post';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-edit-post',
@@ -8,6 +9,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./edit-post.component.css']
 })
 export class EditPostComponent implements OnInit {
+
+  @Input() editablePost: Post;
 
   constructor(private route: ActivatedRoute) { }
 

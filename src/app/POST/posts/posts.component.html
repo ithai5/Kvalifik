@@ -19,7 +19,7 @@
    <ng-container matColumnDef="edit">
      <th mat-header-cell *matHeaderCellDef> </th>
      <td mat-cell *matCellDef="let post">
-       <button routerLink="post/{{post.id}}" mat-stroked-button color="primary" (click)="editPost(post.id)">Edit</button>
+       <button [editablePost]="post" mat-stroked-button color="primary" (click)="editPost(post)">Edit</button>
        <button mat-stroked-button color="primary" (click)="viewPost(post)">View</button>
      </td>
    </ng-container>

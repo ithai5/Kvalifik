@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import {Post} from '../../entities/post';
 import {DataService} from '../../data.service';
@@ -9,6 +9,7 @@ import {DataService} from '../../data.service';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
+  
   posts: Post[];
   displayedColumns: string [] = ['title', 'createdDate', 'likeCount' , 'status', 'edit'];
   constructor(private dataService: DataService, private router: Router) { }
@@ -18,10 +19,14 @@ export class PostsComponent implements OnInit {
   }
   viewPost(post: Post): void {
   }
-  editPost(inputId: any): void {
+  
+  editPost(editablePost: Post): void {
+    console.log(editablePost);
+    this.router.navigate(['/posts/edit/', {post: editablePost.content}])
   }
+
   createPost(inputId: any): void {
-    this.router.navigate(['edit', {id: inputId}]);
+    this.router.navigate(['/posts/edit/', {id: inputId}]);
   }
 
 }

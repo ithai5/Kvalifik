@@ -6,7 +6,7 @@
 
   <mat-form-field class="example-full-width">
     <mat-label>Text</mat-label>
-    <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+    <textarea matInput value="{{editablePost.content}}"></textarea>
   </mat-form-field>
   <div> <!--add media, not functional yet-->
     <button  mat-raised-button (click)="openDialog('photos')"  color="primary">Photo(s)</button>

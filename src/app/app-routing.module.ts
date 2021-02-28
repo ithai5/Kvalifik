@@ -10,7 +10,7 @@ const routes: Routes = [
   {path: 'events', component: EventsComponent},
   {path: 'collections', component: CollectionsComponent},
   {path: 'posts', component: PostsComponent},
-  {path: 'posts/post/:id', component: EditPostComponent},
+  {path: 'posts/edit', component: EditPostComponent},
 
 ];
 
