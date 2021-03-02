@@ -18,4 +18,7 @@
     <mat-option value="one">First Collection</mat-option>
     <mat-option value="two">Second Collection</mat-option>
   </mat-select>
+
+  <button *ngIf="toCreate" mat-raised-button (click)="openDialog('Podcast')" color="primary">Save</button>
+  <button *ngIf="!toCreate" mat-raised-button (click)="openDialog('Podcast')" color="primary">Update</button>
 </form>

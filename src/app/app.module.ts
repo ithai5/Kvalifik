@@ -19,6 +19,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
 import { PostComponent } from './POST/post/post.component';
+import { ViewPostComponent } from './POST/view-post/view-post.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { PostComponent } from './POST/post/post.component';
     CollectionsComponent,
     SidenavComponent,
     EditPostComponent,
-    PostComponent
+    PostComponent,
+    ViewPostComponent
   ],
   imports: [
     BrowserModule,
