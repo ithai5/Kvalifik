@@ -3,7 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Post } from 'src/app/entities/post';
 import { Input } from '@angular/core';
 import {PostService} from '../../service/post.service';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {joinTestLogs} from 'protractor/built/util';
 
 @Component({
   selector: 'app-edit-post',
@@ -20,6 +21,12 @@ export class EditPostComponent implements OnInit {
     content: new FormControl('');
   });
   */
+  post = new FormGroup({
+    title : new FormControl('', Validators.required),
+    content : new FormControl('', Validators.required),
+    picture : new FormControl()
+
+  });
 
   constructor(private route: ActivatedRoute, private postService: PostService) { }
 
@@ -30,9 +37,19 @@ export class EditPostComponent implements OnInit {
   }
 
   openDialog(type: string): void {
-    console.log(type);
   }
-  savePost(post: Post): void{
+  onSubmitCreate(): void{
+    console.log(this.post.value);
+    const post: Post = this.post.value;
+    post.createdDate = new Date();
     this.postService.createPost(post);
+  }
+
+  onSubmitUpdate(): void{
+    console.log(this.post.value);
+  }
+  getPicture(url: string): void{
+    this.post.value.picture = url;
+    console.log('Im form the parent comp ', this.post.value);
   }
 }

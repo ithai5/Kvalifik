@@ -20,6 +20,9 @@ import {MatInputModule} from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
 import { PostComponent } from './POST/post/post.component';
 import { ViewPostComponent } from './POST/view-post/view-post.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import { MatFileUploadModule } from 'angular-material-fileupload';
+import { UploadFileComponent } from './upload-file/upload-file.component';
 
 @NgModule({
   declarations: [
@@ -30,17 +33,18 @@ import { ViewPostComponent } from './POST/view-post/view-post.component';
     SidenavComponent,
     EditPostComponent,
     PostComponent,
-    ViewPostComponent
+    ViewPostComponent,
+    UploadFileComponent,
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    /** Material Inputs */
-    MatButtonModule, MatToolbarModule, MatIconModule, MatListModule,
-    AppRoutingModule, MatTableModule, MatFormFieldModule, MatSelectModule,
-    MatInputModule, MatDialogModule
-    /** -------------- */
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        /** Material Inputs */
+        MatButtonModule, MatToolbarModule, MatIconModule, MatListModule,
+        AppRoutingModule, MatTableModule, MatFormFieldModule, MatSelectModule,
+        MatInputModule, MatDialogModule, ReactiveFormsModule, MatFileUploadModule,
+        /** -------------- */
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

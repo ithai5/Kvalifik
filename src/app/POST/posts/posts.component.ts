@@ -17,6 +17,9 @@ export class PostsComponent implements OnInit {
   ngOnInit(): void {
     this.setPostsLists(this.postService.getPosts());
   }
+  timeForTable(date: Date): string {
+    return date.getDate() + '/' + date.getMonth() + 1 + '/' + date.getFullYear();
+  }
   setPostsLists(postsList: Post[]): void{
     this.posts = postsList;
   }
