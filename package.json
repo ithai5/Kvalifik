@@ -11,6 +11,8 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-redux/router": "^10.0.0",
+    "@angular-redux/store": "^9.0.0",
     "@angular/animations": "~11.2.0",
     "@angular/cdk": "^11.2.1",
     "@angular/common": "~11.2.0",
@@ -22,7 +24,10 @@
     "@angular/platform-browser-dynamic": "~11.2.0",
     "@angular/router": "~11.2.0",
     "angular-material-fileupload": "^3.0.2",
+    "deep-freeze": "0.0.1",
+    "redux": "^4.0.1",
     "rxjs": "~6.6.0",
+    "tassign": "^1.0.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
   },

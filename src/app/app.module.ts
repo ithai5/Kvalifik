@@ -21,8 +21,12 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { PostComponent } from './POST/post/post.component';
 import { ViewPostComponent } from './POST/view-post/view-post.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import { MatFileUploadModule } from 'angular-material-fileupload';
 import { UploadFileComponent } from './upload-file/upload-file.component';
+import { HttpClientModule } from '@angular/common/http';
+import { NgReduxModule, NgRedux } from '@angular-redux/store'
+import { NgReduxRouterModule, NgReduxRouter } from '@angular-redux/router';
+//import { rootReducer } from './redux/reducer';
+
 
 @NgModule({
   declarations: [
@@ -42,10 +46,21 @@ import { UploadFileComponent } from './upload-file/upload-file.component';
         /** Material Inputs */
         MatButtonModule, MatToolbarModule, MatIconModule, MatListModule,
         AppRoutingModule, MatTableModule, MatFormFieldModule, MatSelectModule,
-        MatInputModule, MatDialogModule, ReactiveFormsModule, MatFileUploadModule,
+        MatInputModule, MatDialogModule, ReactiveFormsModule,
         /** -------------- */
+        HttpClientModule,
+        NgReduxModule,
+        NgReduxRouterModule.forRoot()
     ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  /*constructor(private ngRedux: NgRedux<AppState>,
+    private ngReduxRouter: NgReduxRouter) {
+   
+    //this.ngRedux.configureStore(rootReducer, {});
+ 
+      ngReduxRouter.initialize();   
+  }*/
+} 
