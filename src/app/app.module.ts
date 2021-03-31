@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EventsComponent } from './events/events.component';
-import { PostsComponent } from './POST/posts/posts.component';
+import { PostsComponent } from './POST/view-post/posts.component';
 import { CollectionsComponent } from './collections/collections.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {AppRoutingModule} from './app-routing.module';

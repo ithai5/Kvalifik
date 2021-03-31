@@ -13,6 +13,7 @@ export class PostService {
   private httpOptions = {
     headers: new HttpHeaders({'content-Type': 'application.json'})
   }
+
   constructor(dataService: DataService, private httpClient: HttpClient) {
     this.posts = dataService.getPosts();
   }

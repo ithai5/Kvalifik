@@ -3,16 +3,18 @@ import { PostsState } from '../state/postsState';
 import { tassign } from 'tassign';
 import { PostService } from 'src/app/service/post.service';
 import { Post } from 'src/app/entities/post';
+import { DataService } from 'src/app/service/data.service';
 
-const postService: PostService;
 
-const INITIAL_STATE: PostsState = {posts: PostService}
+const INITIAL_STATE: PostsState = {posts: new PostService(
+  new DataService(), null).getPosts()}
 
-export function usersReducer(state: UsersState = INITIAL_STATE, action:any) {
- switch (action.type) {
-  case UsersActions.SET_TYPE:
-    return tassign(state, { isBaby: action.payload });
-   default:
-    return state;
-}
+export function postReducer(state: PostsState = INITIAL_STATE, action: any) {
+  switch (action.type) {
+    case PostActions.APPEND_POST:
+      return tassign(state, { posts: state.posts.concat(action.payload) });
+    
+    default:
+      return state;
+  }
 }

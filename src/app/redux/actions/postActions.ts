@@ -9,10 +9,10 @@ export class PostActions {
   
   static APPEND_POST: string = 'APPEND_POST'; 
   
-  setPosts(posts: Post[]): void {
+  setPosts(post: Post): void {
     this.ngRedux.dispatch({
       type: PostActions.APPEND_POST,
-      payload: posts
-    })
+      payload: post,
+    });
   }
 }

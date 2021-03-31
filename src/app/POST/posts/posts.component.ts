@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import {Post} from '../../entities/post';
-import {DataService} from '../../service/data.service';
 import {PostService} from '../../service/post.service';
 
 @Component({
