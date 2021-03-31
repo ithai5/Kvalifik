@@ -21,7 +21,6 @@ export class PostsComponent implements OnInit {
   ngOnInit(): void {
     // this.setPostsLists(this.postService.getPosts());
     this.ngRedux.select(state => state.posts).subscribe(response => {
-      console.log('hello');
       this.posts = response.posts;
     });
 
@@ -36,11 +35,8 @@ export class PostsComponent implements OnInit {
       // VERY IMPORTANT LINE, THIS IS THE KEY POINT TO SUCCES, WITHOUT IT THE PROGRAM WOULDN'T WORK AT ALL
         this.router.navigate(['/posts/edit/'], {state: {data: {post: editablePost, toCreate: false}}});
   }
-  deletePost(postId: any): Post{
-    const deletedPost = this.postService.deletePost(postId);
-    // this.setPostsLists(this.postService.getPosts());
-    this.router.navigate(['/posts/']);
-    return deletedPost;
+  deletePost(post: Post): void{
+    this.postActions.deletePost(post);
   }
 
   createPost(): void { this.router.navigate(['/posts/edit/'], {state: {data: {post: {title: 'Your title here...', content: 'Your bla bla here...'}, toCreate: true}}});

@@ -1,12 +1,12 @@
-<form [formGroup]="post"  class="edit-post" (ngSubmit)="onSubmitCreate()">
+<form [formGroup]="post"  class="edit-post">
   <mat-form-field class="example-full-width">
     <mat-label>Title</mat-label>
-    <input id="postTitle" matInput formControlName="title" placeholder="{{editablePost.title}}"/>
+    <input id="postTitle" matInput formControlName="title" [(ngModel)]="editablePost.title"/>
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
     <mat-label>Text</mat-label>
-    <textarea id="postContent" matInput formControlName="content" placeholder="{{editablePost.content}}"></textarea>
+    <textarea id="postContent" matInput formControlName="content" [(ngModel)]="editablePost.content"></textarea>
   </mat-form-field>
   <div> <!--add media, not functional yet-->
     <button  mat-raised-button (click)="openDialog('photos')"  color="primary">Photo(s)</button>
@@ -21,7 +21,7 @@
   <!--test-->
   <span></span>
 
-  <button type="submit" *ngIf="toCreate" [disabled]="!post.controls.title.dirty || !post.controls.content.dirty" mat-raised-button color="primary" id="create-post-button">Save</button>
+  <button type="submit" *ngIf="toCreate" [disabled]="!post.controls.title.dirty || !post.controls.content.dirty" mat-raised-button color="primary" id="create-post-button" (click)="onSubmitCreate()">Save</button>
   <button type="submit" *ngIf="!toCreate" mat-raised-button (click)="onSubmitUpdate()" color="primary">Update</button>
 </form>
 <app-upload-file (fileUploading)="getPicture($event)"></app-upload-file>

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'src/app/entities/post';
 import { Input } from '@angular/core';
 import {PostService} from '../../service/post.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {joinTestLogs} from 'protractor/built/util';
+import { AppState } from '../../redux/state/appState'
+import { PostActions } from '../../redux/actions/postActions'
 
 @Component({
   selector: 'app-edit-post',
@@ -28,7 +30,7 @@ export class EditPostComponent implements OnInit {
 
   });
 
-  constructor(private route: ActivatedRoute, private postService: PostService) { }
+  constructor(private route: ActivatedRoute, private postService: PostService, private postActions: PostActions, private router: Router) { }
 
   ngOnInit(): void {
     this.editablePost = history.state.data.post;
@@ -38,15 +40,19 @@ export class EditPostComponent implements OnInit {
 
   openDialog(type: string): void {
   }
+
   onSubmitCreate(): void{
-    console.log(this.post.value);
     const post: Post = this.post.value;
     post.createdDate = new Date();
-    this.postService.createPost(post);
+    this.postActions.addPost(post);
+     this.router.navigate(['/posts/']);
   }
 
   onSubmitUpdate(): void{
-    console.log(this.post.value);
+    const post: Post = this.post.value;
+    post.createdDate = new Date();
+    this.postActions.updatePost(post);
+    this.router.navigate(['/posts/']);
   }
   getPicture(url: string): void{
     console.log('this is the imgpath: ', url);

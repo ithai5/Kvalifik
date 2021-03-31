@@ -21,7 +21,7 @@
      <td mat-cell *matCellDef="let post">
        <button mat-stroked-button color="primary" (click)="editPost(post)" class="edit-button">Edit</button>
        <button mat-stroked-button color="primary" (click)="viewPost(post)" class="view-button">View</button>
-       <button mat-stroked-button color="primary" (click)="deletePost(post.id)" class="delete-button">Delete</button>
+       <button mat-stroked-button color="primary" (click)="deletePost(post)" class="delete-button">Delete</button>
      </td>
    </ng-container>
    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
