@@ -6,8 +6,7 @@ import { postReducer } from '../reducer/postReducer'
 export class AppState {
     posts?: PostsState;
 }
-    
+
 export const rootReducer = combineReducers<AppState>({
     posts: postReducer,
     });
-    

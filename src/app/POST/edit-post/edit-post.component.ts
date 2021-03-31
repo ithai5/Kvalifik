@@ -49,7 +49,6 @@ export class EditPostComponent implements OnInit {
     console.log(this.post.value);
   }
   getPicture(url: string): void{
-    //this.post.value.picture = url;
     console.log('this is the imgpath: ', url);
     this.postService.uploadPictureToAPI(url);
   }

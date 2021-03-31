@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EventsComponent } from './events/events.component';
-import { PostsComponent } from './POST/view-post/posts.component';
+import { PostsComponent } from './POST/posts/posts.component';
 import { CollectionsComponent } from './collections/collections.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {AppRoutingModule} from './app-routing.module';
@@ -23,9 +23,9 @@ import { ViewPostComponent } from './POST/view-post/view-post.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { UploadFileComponent } from './upload-file/upload-file.component';
 import { HttpClientModule } from '@angular/common/http';
-import { NgReduxModule, NgRedux } from '@angular-redux/store'
+import { NgReduxModule, NgRedux } from '@angular-redux/store';
 import { NgReduxRouterModule, NgReduxRouter } from '@angular-redux/router';
-//import { rootReducer } from './redux/reducer';
+import {AppState, rootReducer} from './redux/state/appState';
 
 
 @NgModule({
@@ -56,11 +56,9 @@ import { NgReduxRouterModule, NgReduxRouter } from '@angular-redux/router';
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  /*constructor(private ngRedux: NgRedux<AppState>,
-    private ngReduxRouter: NgReduxRouter) {
-   
-    //this.ngRedux.configureStore(rootReducer, {});
- 
-      ngReduxRouter.initialize();   
-  }*/
-} 
+  constructor(private ngRedux: NgRedux<AppState>,
+              private ngReduxRouter: NgReduxRouter) {
+    this.ngRedux.configureStore(rootReducer, {});
+    ngReduxRouter.initialize();
+    }
+  }
