@@ -6,9 +6,9 @@ import { Post } from 'src/app/entities/post';
 import { DataService } from 'src/app/service/data.service';
 
 
-const INITIAL_STATE: PostsState = {
-  posts: new PostService(
-  new DataService(), null).getPosts()
+
+export const INITIAL_STATE: PostsState = {
+  posts: new PostService( new DataService(), null).getPosts()
 };
 
 export function postReducer(state: PostsState = INITIAL_STATE, action: any): any {
@@ -16,6 +16,7 @@ export function postReducer(state: PostsState = INITIAL_STATE, action: any): any
     
     case PostActions.ADD_POST:
       return tassign(state, { posts: state.posts.concat(action.payload) });
+    
       case PostActions.UPDATE_POST:
       return tassign(state, { posts: state.posts.map(post => {
         if (post.id === action.payload.id){
@@ -26,10 +27,12 @@ export function postReducer(state: PostsState = INITIAL_STATE, action: any): any
             }
           })
         });
-    case PostActions.DELETE_POST:
+    
+        case PostActions.DELETE_POST:
       return tassign(state, { posts: state.posts.filter(post => {
         if (post.id !== action.payload.id) { return post; }
       })});
+
       default:
       return state;
   }
