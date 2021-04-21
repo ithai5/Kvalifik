@@ -5,6 +5,7 @@ import {CollectionsComponent} from './collections/collections.component';
 import {PostsComponent} from './POST/posts/posts.component';
 import {EditPostComponent} from './POST/edit-post/edit-post.component';
 import {ViewPostComponent} from './POST/view-post/view-post.component';
+import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
   {path: 'collections', component: CollectionsComponent},
   {path: 'posts', component: PostsComponent},
   {path: 'posts/edit', component: EditPostComponent},
-  {path: 'posts/:id', component: ViewPostComponent}
+  {path: 'posts/:id', component: ViewPostComponent},
+  {path: 'login', component: LoginComponent}
 
 ];
 

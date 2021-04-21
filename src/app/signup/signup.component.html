@@ -1,0 +1,45 @@
+<!--
+<form [formGroup]="user" (ngSubmit)="onSubmit()">
+    <div>
+      <label>Username:
+      <input formControlName="username" type="text" required="true" minlength="4" id="username">
+      </label>
+      <span *ngIf="user.controls.username.value.length<4 && user.controls.username.dirty">
+        user name must be longer then 4
+      </span>
+    </div>
+    <div>
+      <label>First name:
+        <input formControlName="firstName" type="text" required="true">
+      </label>
+    </div>
+    <div>
+      <label>Last name:
+        <input formControlName="lastName" type="text" required="true">
+      </label>
+    </div>
+    <div>
+      <label>Email:
+        <input formControlName="email" type="email" required="true">
+      </label>
+      <span *ngIf="user.controls.email.invalid && user.controls.email.dirty">
+        email address is invalid
+      </span>
+    </div>
+    <div>
+      <label>
+        Password:
+        <input formControlName="password" type="password" required="true">
+      </label>
+    </div>
+    <div>
+      <label>Re-enter Password:
+        <input formControlName="reEnterPassword"type="password" required="required">
+      </label>
+      <span *ngIf="!matchPasswords()">
+        passwords does not match
+      </span>
+    </div>
+    <button type="submit" [disabled]="!user.valid || !matchPasswords()">Submit</button>
+  </form>
+-->

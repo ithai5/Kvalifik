@@ -26,6 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgReduxModule, NgRedux } from '@angular-redux/store';
 import { NgReduxRouterModule, NgReduxRouter } from '@angular-redux/router';
 import {AppState, rootReducer} from './redux/state/appState';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 
 @NgModule({
@@ -39,6 +41,8 @@ import {AppState, rootReducer} from './redux/state/appState';
     PostComponent,
     ViewPostComponent,
     UploadFileComponent,
+    LoginComponent,
+    SignupComponent,
   ],
     imports: [
         BrowserModule,

@@ -12,6 +12,7 @@ describe('Post Reducer', () => {
         
         const actions = {type: types.PostActions.ADD_POST, payload: {}};
         const posts = postReducer(oldState, actions);
+
         expect(posts.posts).toHaveSize(oldState.posts.length + 1);
     })
 })
