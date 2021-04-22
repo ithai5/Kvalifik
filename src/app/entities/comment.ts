@@ -1,8 +1,8 @@
-import {WebUser} from './web-user';
+import {User} from './user';
 
 export class Comment{
-  webUser: WebUser;
+  user: User;
   timestamp: Date;
   content: string;
-  numLike: number; /*can be nice to implement with webUser array*/
+  numLike: number; /*can be nice to implement with user array*/
 }
