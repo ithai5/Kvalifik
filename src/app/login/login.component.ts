@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   }
 
   tryLogin(): any {
-    const apiToken: string = "AIzaSyBG8jNvowyDYdPQdQcPrOZfIW2_hCpK7ww";
+    const apiToken: string = "";
     const apiURL: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + apiToken;
     
     const userDetails: any = {
