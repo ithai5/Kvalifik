@@ -2,7 +2,6 @@ import { PostActions } from '../actions/postActions';
 import { PostsState } from '../state/postsState';
 import { tassign } from 'tassign';
 import { PostService } from 'src/app/service/post.service';
-import { Post } from 'src/app/entities/post';
 import { DataService } from 'src/app/service/data.service';
 
 

@@ -8,7 +8,7 @@ export function userReducer(state: UserState = INITIAL_STATE, action: any): any 
       case UserActions.LOGIN:
         return tassign(state, {userInfo: action.payload.userInfo, userToken: action.payload.userToken});
       default:
-        return state
+        return state;
     }
 
 }
