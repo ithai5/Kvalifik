@@ -45,7 +45,7 @@ export class EditPostComponent implements OnInit {
     const post: Post = this.post.value;
     post.createdDate = new Date();
     this.postActions.addPost(post);
-     this.router.navigate(['/posts/']);
+    this.router.navigate(['/posts/']);
   }
 
   onSubmitUpdate(): void{

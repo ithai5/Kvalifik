@@ -1,6 +1,5 @@
-import { User } from '../../entities/user'
-
+import { User } from '../../entities/user';
 export class UserState {
     userInfo: User;
-    userToken: String;
+    userToken: string;
 }
