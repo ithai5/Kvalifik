@@ -17,9 +17,17 @@ export class SignupComponent implements OnInit {
     reEnterPassword : new FormControl('', Validators.required)
   });
 
-  constructor() { }
+  constructor() {   }
 
   ngOnInit(): void {
   }
+  f(): object{ return this.user.controls; }
 
+  onSubmit(): void{
+    console.log(this.user);
+  }
+  matchPasswords(): boolean{
+    console.log(this.f);
+    return (this.user.value.password === this.user.value.reEnterPassword);
+  }
 }
