@@ -9,9 +9,10 @@ export class UserActions{
     static LOGIN = 'LOGIN';
 
     login(user: User, token: string): void {
+
         this.ngRedux.dispatch({
             type: UserActions.LOGIN,
-            payload: {userInfo: user, tokenId: token},
+            payload: {userInfo: user, userToken: token},
         });
     }
 }
