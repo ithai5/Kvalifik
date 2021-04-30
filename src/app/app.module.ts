@@ -28,6 +28,9 @@ import { NgReduxRouterModule, NgReduxRouter } from '@angular-redux/router';
 import {AppState, rootReducer} from './redux/state/appState';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { EventComponent } from './EVENT/event-list/event/event.component';
+import { ViewEventComponent } from './EVENT/view-event/view-event.component';
+import { EditEventComponent } from './EVENT/edit-event/edit-event.component';
 
 
 @NgModule({
@@ -43,6 +46,9 @@ import { SignupComponent } from './signup/signup.component';
     UploadFileComponent,
     LoginComponent,
     SignupComponent,
+    EventComponent,
+    ViewEventComponent,
+    EditEventComponent,
   ],
     imports: [
         BrowserModule,
