@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { EventsComponent } from './events/events.component';
+import { EventListComponent } from './EVENT/event-list/event-list.component';
 import { PostsComponent } from './POST/posts/posts.component';
 import { CollectionsComponent } from './collections/collections.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -33,7 +33,7 @@ import { SignupComponent } from './signup/signup.component';
 @NgModule({
   declarations: [
     AppComponent,
-    EventsComponent,
+    EventListComponent,
     PostsComponent,
     CollectionsComponent,
     SidenavComponent,
