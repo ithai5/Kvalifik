@@ -18,20 +18,15 @@ export class PostService {
   }
 
   constructor(private httpClient: HttpClient, private ngRedux: NgRedux<AppState>, private PostActions: PostActions) {
-    
+
   }
 
   /** return all the posts */
-  loadPosts(): void {
-    const url: string = environment.databaseURL + "Posts.json?auth=" + this.ngRedux.getState().user.userToken;
-    
-    this.httpClient.get(url, this.httpOptions).subscribe(res => {
-      INITIAL_STATE.posts = res as Post[];
-    });
-  }
 
   getPosts(): Post[] {
+/*
     this.loadPosts();
+*/
     return this.posts;
   }
 

@@ -5,6 +5,8 @@ import {UserActions} from '../../redux/actions/userActions';
 import {User} from '../../entities/user';
 import {environment} from '../../../environments/environment';
 import { INITIAL_STATE } from '../../redux/reducer/userReducer'
+import {AuthService} from '../../service/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -21,11 +23,21 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', [Validators.required])
   });
 
-  constructor(private httpClient: HttpClient, private userActions: UserActions) { }
+  constructor(private httpClient: HttpClient, private userActions: UserActions, private authService: AuthService) { }
 
   ngOnInit(): void {
   }
 
+  tryLogin() : void {
+    const userDetails = {
+      email: this.loginInfo.value.email,
+      password: this.loginInfo.value.password,
+      returnSecureToken: true,
+    }
+    this.authService.login(userDetails)
+
+  }
+/*
   tryLogin(): any {
     const apiToken = environment.tokenAPI;
     const apiURL: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + apiToken;
@@ -45,4 +57,5 @@ export class LoginComponent implements OnInit {
         this.userActions.login(userInfo, res.idToken);
       });
   }
+*/
 }

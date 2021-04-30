@@ -24,12 +24,12 @@ export class PostsComponent implements OnInit {
 
   ngOnInit(): void {
     // OLD OLD implementation: this.setPostsLists(this.postService.getPosts());
-    this.postService.loadPosts();
+/*    this.postService.loadPosts();*/
     this.ngRedux.select(state => state.posts).subscribe(response => {
       this.posts = response.posts;
     });
   }
-  
+
   timeForTable(date: Date): string {
     return date.getDate() + '/' + date.getMonth() + 1 + '/' + date.getFullYear();
   }
