@@ -1,13 +1,14 @@
 import { PostActions } from '../actions/postActions';
-import { PostListState } from '../state/postListState';
+import { PostState } from '../state/postState';
 import { tassign } from 'tassign';
 
 
-export const INITIAL_STATE: PostListState = {
+export const INITIAL_STATE: PostState = {
   postList: []
 };
 
-export function postReducer(state: PostListState = INITIAL_STATE, action: any): any {
+export function postReducer(state: PostState = INITIAL_STATE, action: any): any {
+  
   switch (action.type) {
       case PostActions.ADD_POST:
         return tassign(state, { postList: state.postList.concat(action.payload) });

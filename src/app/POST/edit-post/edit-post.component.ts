@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'src/app/entities/post';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PostActions } from '../../redux/actions/postActions'
+import { PostService } from 'src/app/service/post.service';
 
 @Component({
   selector: 'app-edit-post',
@@ -27,7 +28,7 @@ export class EditPostComponent implements OnInit {
   });
 
   constructor(private route: ActivatedRoute,
-    private postActions: PostActions,
+    private postService: PostService,
     private router: Router)
     {}
 
@@ -41,9 +42,8 @@ export class EditPostComponent implements OnInit {
   }
 
   onSubmitCreate(): void{
-    const post: Post = this.post.value;
-    post.createdDate = new Date();
-    this.postActions.addPost(post);
+    this.post.value.createdDate = new Date();
+    this.postService.createPost(this.post.value);
     this.router.navigate(['/postList/']);
   }
 

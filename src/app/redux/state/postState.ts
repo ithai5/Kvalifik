@@ -1,5 +1,5 @@
 import { Post } from '../../entities/post'
 
-export class PostListState {
+export class PostState {
     postList: Post[]
 }
