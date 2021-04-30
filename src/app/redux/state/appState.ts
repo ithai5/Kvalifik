@@ -4,10 +4,12 @@ import { PostsState } from './postsState';
 import { postReducer } from '../reducer/postReducer'
 import { UserState } from './userState';
 import {userReducer} from '../reducer/userReducer';
+import { EventListState } from './eventListState';
 
 export class AppState {
     posts?: PostsState;
     user?: UserState;
+    eventsList?: EventListState;
 }
 
 export const rootReducer = combineReducers<AppState>({
