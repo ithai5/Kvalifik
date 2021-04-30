@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EventsComponent } from './events/events.component';
-import { PostsComponent } from './POST/posts/posts.component';
+import { PostListComponent } from './POST/postList/postList.component';
 import { CollectionsComponent } from './collections/collections.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {AppRoutingModule} from './app-routing.module';
@@ -18,7 +18,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
-import { PostComponent } from './POST/post/post.component';
 import { ViewPostComponent } from './POST/view-post/view-post.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -36,11 +35,10 @@ import { MatCardModule } from '@angular/material/card';
   declarations: [
     AppComponent,
     EventsComponent,
-    PostsComponent,
+    PostListComponent,
     CollectionsComponent,
     SidenavComponent,
     EditPostComponent,
-    PostComponent,
     ViewPostComponent,
     LoginComponent,
     SignupComponent,

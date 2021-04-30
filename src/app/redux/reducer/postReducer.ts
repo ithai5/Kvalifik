@@ -1,21 +1,19 @@
 import { PostActions } from '../actions/postActions';
-import { PostsState } from '../state/postsState';
+import { PostListState } from '../state/postListState';
 import { tassign } from 'tassign';
-import { PostService } from '../../service/post.service'
-import { NgRedux } from '@angular-redux/store';
-import { AppState } from '../state/appState';
 
-export const INITIAL_STATE: PostsState = {
-  posts: []
+
+export const INITIAL_STATE: PostListState = {
+  postList: []
 };
 
-export function postReducer(state: PostsState = INITIAL_STATE, action: any): any {
+export function postReducer(state: PostListState = INITIAL_STATE, action: any): any {
   switch (action.type) {
       case PostActions.ADD_POST:
-        return tassign(state, { posts: state.posts.concat(action.payload) });
+        return tassign(state, { postList: state.postList.concat(action.payload) });
       
       case PostActions.UPDATE_POST:
-        return tassign(state, { posts: state.posts.map(post => {
+        return tassign(state, { postList: state.postList.map(post => {
           if (post.id === action.payload.id){
               return{...post, ...action.payload, id: post.id};
             }
@@ -26,13 +24,13 @@ export function postReducer(state: PostsState = INITIAL_STATE, action: any): any
         });
       
       case PostActions.DELETE_POST:
-        return tassign(state, { posts: state.posts.filter(post => {
+        return tassign(state, { postList: state.postList.filter(post => {
           if (post.id !== action.payload.id) { return post; }
       })});
-
+      /* Not in use?
       case PostActions.GET_POSTS:
-          return tassign(state, {posts: action.payload})
-
+          return tassign(state, {postList: action.payload})
+      */
       default:
 
       return state;

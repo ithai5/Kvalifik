@@ -5,9 +5,9 @@ import {Post} from '../../entities/post';
   name: 'postFilter'
 })
 export class PostFilterPipe implements PipeTransform {
-  transform(posts: Post[], searchInput: string): Post[] {
+  transform(postList: Post[], searchInput: string): Post[] {
     console.log("hello there")
-    return posts.filter(postElement => postElement.title.toLowerCase().includes(searchInput.toLowerCase())
+    return postList.filter(postElement => postElement.title.toLowerCase().includes(searchInput.toLowerCase())
       || postElement.content.toLowerCase().includes(searchInput.toLowerCase()))
       }
   

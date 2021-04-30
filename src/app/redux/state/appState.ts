@@ -1,15 +1,15 @@
 import { combineReducers } from 'redux';
-import { PostsState } from './postsState';
+import { PostListState } from './postListState';
 import { postReducer } from '../reducer/postReducer'
 import { UserState } from './userState';
 import {userReducer} from '../reducer/userReducer';
 
 export class AppState {
-    posts?: PostsState;
+    postList?: PostListState;
     user?: UserState;
 }
 
 export const rootReducer = combineReducers<AppState>({
-    posts: postReducer,
+    postList: postReducer,
     user: userReducer,
     });

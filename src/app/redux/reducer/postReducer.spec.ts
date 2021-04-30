@@ -11,8 +11,8 @@ describe('Post Reducer', () => {
         deepFreeze(oldState);
         
         const actions = {type: types.PostActions.ADD_POST, payload: {}};
-        const posts = postReducer(oldState, actions);
+        const postList = postReducer(oldState, actions);
 
-        expect(posts.posts).toHaveSize(oldState.posts.length + 1);
+        expect(postList.postList).toHaveSize(oldState.postList.length + 1);
     })
 })

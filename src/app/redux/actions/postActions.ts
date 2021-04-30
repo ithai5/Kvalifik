@@ -32,7 +32,7 @@ export class PostActions {
     });
   }
 
-  getPosts(postList: Post[]): void {
+  getPostList(postList: Post[]): void {
     this.ngRedux.dispatch({
       type: PostActions.GET_POSTS,
       payload: postList

@@ -33,18 +33,18 @@ export class AuthService extends ApiService{
           email: res.email
         } as User ;
           this.userActions.login(userInfo, res.idToken);
-          this.loadPosts();
+          this.loadPostList();
 
       });
 
   }
 
 
-  loadPosts(): void {
+  loadPostList(): void {
     const url: string = environment.databaseURL + "Posts.json?auth=" + this.ngRedux.getState().user.userToken;
     this.httpClient.get(url, this.getHttpHeader()).subscribe(res => {
-      INITIAL_STATE.posts = res as Post[];
-      this.router.navigate(['posts'])
+      INITIAL_STATE.postList = res as Post[];
+      this.router.navigate(['postList'])
     });
   }
 

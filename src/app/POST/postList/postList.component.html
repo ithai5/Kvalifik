@@ -12,13 +12,13 @@
     <input matInput type="text" [(ngModel)]="search" placeholder="Search a post" />
   </mat-form-field>
 <!--
-  <mat-card class="example-card" *ngFor="let post of posts | postFilter: search">
+  <mat-card class="example-card" *ngFor="let post of postList | postFilter: search">
     <app-post [post]="post" (postClicked)="editPost($event)"></app-post>
   </mat-card>
 -->
 </div>
 
-<table mat-table [dataSource]="posts | postFilter: search" >
+<table mat-table [dataSource]="postList | postFilter: search" >
    <ng-container matColumnDef="title">
      <th mat-header-cell *matHeaderCellDef> Title </th>
      <td mat-cell *matCellDef="let post"> {{post.title}}</td>
