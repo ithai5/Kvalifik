@@ -18,7 +18,7 @@ export class PostService extends ApiService{
   //Creates a new post
   createPost(post: Post): void{
     this.postActions.addPost(post);
-    this.httpClient.post(environment.dbAccess("Posts", this.authService.getIdToken()), post, this.getHttpHeader()).subscribe(res => console.log(res))
+    this.httpClient.post(this.dbAccess("Posts", this.authService.getIdToken()), post, this.getHttpHeader()).subscribe(res => console.log(res))
   }
 
 }

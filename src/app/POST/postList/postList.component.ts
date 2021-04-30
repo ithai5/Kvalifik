@@ -22,7 +22,12 @@ export class PostListComponent implements OnInit {
 
   ngOnInit(): void {
     this.ngRedux.select(state => state.postList).subscribe(response => {
+      this.postList = Object.entries(response.postList).map(([key, value])=>{
+        return value; // converting object into array
+      })
+/*
       this.postList = response.postList;
+*/
     });
   }
 
@@ -39,7 +44,7 @@ export class PostListComponent implements OnInit {
   }
   deletePost(post: Post): void{
     this.postActions.deletePost(post);
-    
+
   }
 
   createPost(): void { this.router.navigate(['/postList/edit/'], {state: {data: {post: {title: 'Your title here...', content: 'Your bla bla here...'}, toCreate: true}}});
