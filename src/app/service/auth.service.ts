@@ -41,8 +41,7 @@ export class AuthService extends ApiService{
 
 
   loadPostList(): void {
-    const url: string = environment.databaseURL + "Posts.json?auth=" + this.ngRedux.getState().user.userToken;
-    this.httpClient.get(url, this.getHttpHeader()).subscribe(res => {
+    this.httpClient.get(environment.dbAccess("Posts", this.getIdToken()), this.getHttpHeader()).subscribe(res => {
       INITIAL_STATE.postList = res as Post[];
       this.router.navigate(['postList'])
     });

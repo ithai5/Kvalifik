@@ -10,5 +10,5 @@ export class PostFilterPipe implements PipeTransform {
     return postList.filter(postElement => postElement.title.toLowerCase().includes(searchInput.toLowerCase())
       || postElement.content.toLowerCase().includes(searchInput.toLowerCase()))
       }
-  
+
 }

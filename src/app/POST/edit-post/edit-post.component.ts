@@ -50,7 +50,6 @@ export class EditPostComponent implements OnInit {
   onSubmitUpdate(): void{
     const post: Post = this.post.value;
     post.createdDate = new Date();
-    this.postActions.updatePost(post);
     this.router.navigate(['/postList/']);
   }
   getPicture(url: string): void{
