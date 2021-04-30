@@ -10,7 +10,7 @@ import { eventReducer } from '../reducer/eventReducer';
 export class AppState {
     posts?: PostsState;
     user?: UserState;
-    eventsList?: EventListState;
+    eventList?: EventListState;
 }
 
 export const rootReducer = combineReducers<AppState>({

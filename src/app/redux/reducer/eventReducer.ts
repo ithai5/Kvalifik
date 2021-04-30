@@ -6,7 +6,7 @@ import { DataService } from 'src/app/service/data.service';
 
 
 export const INITIAL_STATE: EventListState = {
-  eventList: new EventService( new DataService(), null).getEvents();
+  eventList: new EventService( new DataService(), null).getEvents()
 };
 
 export function eventReducer(state: EventListState = INITIAL_STATE, action: any): any {

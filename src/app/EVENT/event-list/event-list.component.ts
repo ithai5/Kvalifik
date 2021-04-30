@@ -21,7 +21,7 @@ export class EventListComponent implements OnInit {
               private ngRedux: NgRedux<AppState>, private eventActions: EventActions) { }
 
   ngOnInit(): void {
-    this.ngRedux.select(state => state.eventsList).subscribe(Response => {
+    this.ngRedux.select(state => state.eventList).subscribe(Response => {
       this.events = Response.eventList;
     })
   }
