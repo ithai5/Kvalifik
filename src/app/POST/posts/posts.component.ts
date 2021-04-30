@@ -15,6 +15,8 @@ import {log} from 'util';
 export class PostsComponent implements OnInit {
   posts: Post[];
   displayedColumns: string [] = ['title', 'createdDate', 'likeCount' , 'status', 'edit'];
+  public search: string = '';
+
   constructor(private postService: PostService, private router: Router,
               private ngRedux: NgRedux<AppState>, private postActions: PostActions) { }
 

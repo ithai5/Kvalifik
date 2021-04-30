@@ -1,5 +1,24 @@
 <button mat-stroked-button color="primary"(click)="createPost()" id="createPostButton">Create new Post!</button>
-<table mat-table [dataSource]="posts" >
+<!--  <mat-form-field>
+    <input matInput type="text" [(ngModel)]="search" placeholder="Search a post" />
+  </mat-form-field>-->
+<div class="flexHeader">
+  <h3>Posts</h3>
+  <button mat-raised-button color="primary" routerLink="/neweditpost" id="newPostBtn">New Post</button>
+</div>
+
+<div class="flexGrid">
+  <mat-form-field>
+    <input matInput type="text" [(ngModel)]="search" placeholder="Search a post" />
+  </mat-form-field>
+<!--
+  <mat-card class="example-card" *ngFor="let post of posts | postFilter: search">
+    <app-post [post]="post" (postClicked)="editPost($event)"></app-post>
+  </mat-card>
+-->
+</div>
+
+<table mat-table [dataSource]="posts | postFilter: search" >
    <ng-container matColumnDef="title">
      <th mat-header-cell *matHeaderCellDef> Title </th>
      <td mat-cell *matCellDef="let post"> {{post.title}}</td>
@@ -27,3 +46,4 @@
    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
  </table>
+

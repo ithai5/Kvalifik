@@ -42,14 +42,7 @@ export class PostService {
     return postToUpdate;
   }
   /** delete post receives id and delete it, it will return the deleted post */
-  deletePost(id: any): Post{
+  deletePost(id: any): Post {
     return this.posts.splice(this.posts.indexOf(this.getPostById(id)), 1)[0];
-  }
-
-  // TODO: Can potentially be moved to some other place at some other time :)
-  uploadPictureToAPI(imgPath: string): any{
-    const apiURL: string = 'https://api.imgbb.com/1/upload?key=73a7cdce0b5d789489867d977f6bcb7a&image=' + imgPath;
-    console.log('boop!')
-    console.log(this.httpClient.post<any>(apiURL, imgPath, this.httpOptions).subscribe());
   }
 }

@@ -55,7 +55,5 @@ export class EditPostComponent implements OnInit {
     this.router.navigate(['/posts/']);
   }
   getPicture(url: string): void{
-    console.log('this is the imgpath: ', url);
-    this.postService.uploadPictureToAPI(url);
   }
 }

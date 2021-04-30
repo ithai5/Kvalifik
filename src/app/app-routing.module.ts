@@ -5,8 +5,8 @@ import {CollectionsComponent} from './collections/collections.component';
 import {PostsComponent} from './POST/posts/posts.component';
 import {EditPostComponent} from './POST/edit-post/edit-post.component';
 import {ViewPostComponent} from './POST/view-post/view-post.component';
-import { LoginComponent } from './login/login.component';
-import {SignupComponent} from './signup/signup.component';
+import {LoginComponent} from './authentication/login/login.component';
+import {SignupComponent} from './authentication/signup/signup.component';
 
 
 const routes: Routes = [

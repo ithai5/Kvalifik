@@ -24,7 +24,6 @@
   <button type="submit" *ngIf="toCreate" [disabled]="!post.controls.title.dirty || !post.controls.content.dirty" mat-raised-button color="primary" id="create-post-button" (click)="onSubmitCreate()">Save</button>
   <button type="submit" *ngIf="!toCreate" mat-raised-button (click)="onSubmitUpdate()" color="primary">Update</button>
 </form>
-<app-upload-file (fileUploading)="getPicture($event)"></app-upload-file>
 
 <!--<mat-form-field class="example-full-width">
   <mat-label>picture</mat-label>

@@ -1,10 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {UserActions} from '../redux/actions/userActions';
-import {User} from '../entities/user';
-import {environment} from '../../environments/environment';
-import { INITIAL_STATE } from '../redux/reducer/userReducer'
+import {UserActions} from '../../redux/actions/userActions';
+import {User} from '../../entities/user';
+import {environment} from '../../../environments/environment';
+import { INITIAL_STATE } from '../../redux/reducer/userReducer'
 
 @Component({
   selector: 'app-login',
@@ -34,14 +34,14 @@ export class LoginComponent implements OnInit {
       password: this.loginInfo.value.password,
       returnSecureToken: true,
     };
-    
+
     console.log(userDetails);
     return this.httpClient.post<any>(apiURL, userDetails, this.httpOptions)
       .subscribe((res: any) => {
         const userInfo = {
           email: res.email
         } as User ;
-        
+
         this.userActions.login(userInfo, res.idToken);
       });
   }

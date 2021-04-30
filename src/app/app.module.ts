@@ -21,13 +21,15 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { PostComponent } from './POST/post/post.component';
 import { ViewPostComponent } from './POST/view-post/view-post.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import { UploadFileComponent } from './upload-file/upload-file.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgReduxModule, NgRedux } from '@angular-redux/store';
 import { NgReduxRouterModule, NgReduxRouter } from '@angular-redux/router';
 import {AppState, rootReducer} from './redux/state/appState';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
+import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './authentication/login/login.component';
+import { SignupComponent } from './authentication/signup/signup.component';
+import { PostFilterPipe } from './POST/post-filter/post-filter.pipe';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -40,17 +42,18 @@ import { SignupComponent } from './signup/signup.component';
     EditPostComponent,
     PostComponent,
     ViewPostComponent,
-    UploadFileComponent,
     LoginComponent,
     SignupComponent,
+    PostFilterPipe,
   ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
+        FormsModule,
         /** Material Inputs */
         MatButtonModule, MatToolbarModule, MatIconModule, MatListModule,
         AppRoutingModule, MatTableModule, MatFormFieldModule, MatSelectModule,
-        MatInputModule, MatDialogModule, ReactiveFormsModule,
+        MatInputModule, MatDialogModule, ReactiveFormsModule, MatCardModule,
         /** -------------- */
         HttpClientModule,
         NgReduxModule,
