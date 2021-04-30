@@ -9,6 +9,7 @@ export class PostActions {
   static ADD_POST = 'ADD_POST';
   static UPDATE_POST = 'UPDATE_POST';
   static DELETE_POST = 'DELETE_POST';
+  static GET_POSTS = 'GET_POSTS';
   
   addPost(post: Post): void {
     this.ngRedux.dispatch({
@@ -29,5 +30,12 @@ export class PostActions {
       type: PostActions.DELETE_POST,
       payload: deletePost
     });
+  }
+
+  getPosts(postList: Post[]): void {
+    this.ngRedux.dispatch({
+      type: PostActions.GET_POSTS,
+      payload: postList
+    })
   }
 }

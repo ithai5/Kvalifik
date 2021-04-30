@@ -18,15 +18,18 @@ export class PostsComponent implements OnInit {
   public search: string = '';
 
   constructor(private postService: PostService, private router: Router,
-              private ngRedux: NgRedux<AppState>, private postActions: PostActions) { }
+              private ngRedux: NgRedux<AppState>, private postActions: PostActions) {
+                console.log("Posts constructor");
+              }
 
   ngOnInit(): void {
-    // this.setPostsLists(this.postService.getPosts());
+    // OLD OLD implementation: this.setPostsLists(this.postService.getPosts());
+    this.postService.loadPosts();
     this.ngRedux.select(state => state.posts).subscribe(response => {
       this.posts = response.posts;
     });
-
   }
+  
   timeForTable(date: Date): string {
     return date.getDate() + '/' + date.getMonth() + 1 + '/' + date.getFullYear();
   }

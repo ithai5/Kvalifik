@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
-import { DataService } from './data.service';
 import {Post} from '../entities/post';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { NgRedux } from '@angular-redux/store';
+import { AppState } from '../redux/state/appState';
+import { environment } from 'src/environments/environment';
+import { PostActions } from '../redux/actions/postActions';
+import { INITIAL_STATE } from '../redux/reducer/postReducer';
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +17,24 @@ export class PostService {
     headers: new HttpHeaders({'content-Type': 'application.json'})
   }
 
-  constructor(dataService: DataService, private httpClient: HttpClient) {
-    this.posts = dataService.getPosts();
+  constructor(private httpClient: HttpClient, private ngRedux: NgRedux<AppState>, private PostActions: PostActions) {
+    
   }
 
   /** return all the posts */
-  getPosts(): Post[]{
+  loadPosts(): void {
+    const url: string = environment.databaseURL + "Posts.json?auth=" + this.ngRedux.getState().user.userToken;
+    
+    this.httpClient.get(url, this.httpOptions).subscribe(res => {
+      INITIAL_STATE.posts = res as Post[];
+    });
+  }
+
+  getPosts(): Post[] {
+    this.loadPosts();
     return this.posts;
   }
+
   /** get one post by  id */
   getPostById(id: any): Post{
     return this.posts.find((post) => post.id === id); // find the post by the id
