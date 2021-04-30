@@ -11,7 +11,7 @@ export class EventActions {
 
     addEvent(event: Event): void {
         this.ngRedux.dispatch({
-            type: EventActions.ADD_EVENT;
+            type: EventActions.ADD_EVENT,
             payload: event,
         })
     }
