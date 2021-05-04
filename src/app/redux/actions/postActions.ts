@@ -36,14 +36,21 @@ export class PostActions {
   }
 
   getPostList(): void {
-    this.postService.getPostList().subscribe(results => {
-      console.log("this is from the post action: ", results);
+    this.postService.getPostList().subscribe(res => {
+      console.log("this is from the post action: ", res);
+      let postList;
+
+      postList = Object.entries(res).map(([key, value])=>{
+        let post = value as Post;
+        return {... post, id: key}; // converting object into array
+      })
+      
+      this.ngRedux.dispatch({
+        //call to post service
+        type: PostActions.GET_POSTS,
+        payload: postList
+      })
     })
-/*    this.ngRedux.dispatch({
-      //call to post service
-      this.postService.getPost()
-      type: PostActions.GET_POSTS,
-      payload: postList
-    })*/
+/*    */
   }
 }

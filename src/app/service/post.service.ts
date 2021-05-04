@@ -24,19 +24,10 @@ export class PostService extends ApiService{
   }
 
   //load post from Firebase
-  getPostList(): any{
-    const posts = [];
-    this.httpClient.get(this.dbAccess("Posts",this.ngRedux.getState().user.userToken), this.getHttpHeader())
-      .subscribe(res=>{
-        console.log("this is from getPostList in postService: ", res);
-        return res
-    })
+  getPostList(): any {
+    let posts: Post[] = [];
+    return this.httpClient.get(this.dbAccess("Posts",this.ngRedux.getState().user.userToken), this.getHttpHeader());
 
-/*
-    Object.entries(response.postList).map(([key, value])=>{
-      return value; // converting object into array
-    })
-*/
   }
 
 }
