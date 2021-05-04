@@ -21,12 +21,17 @@ export class PostListComponent implements OnInit {
               }
 
   ngOnInit(): void {
-    this.ngRedux.select(state => state.postList).subscribe(response => {
+    // need to make a call to the backend to get all posts
+    this.postActions.getPostList()
+
+    this.ngRedux.select(state => state.postList).subscribe(res => {
+      this.postList = res.postList
+/*
+      console.log(response)
       this.postList = Object.entries(response.postList).map(([key, value])=>{
         return value; // converting object into array
       })
-/*
-      this.postList = response.postList;
+      console.log(this.postList)
 */
     });
   }

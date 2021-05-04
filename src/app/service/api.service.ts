@@ -16,6 +16,7 @@ export class ApiService {
     }
   }
   dbAccess (list, auth): string {
+    console.log("auth: ", auth, " list: ", list);
     console.log( `${environment.databaseURL}${list}.json?auth=${auth}`);
      return  `${environment.databaseURL}${list}.json?auth=${auth}`
   }

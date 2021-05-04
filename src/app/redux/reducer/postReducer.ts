@@ -4,15 +4,15 @@ import { tassign } from 'tassign';
 
 
 export const INITIAL_STATE: PostState = {
-  postList: []
+  postList: [] //maybe the initial state should be already the information from the db?
 };
 
 export function postReducer(state: PostState = INITIAL_STATE, action: any): any {
-  
+
   switch (action.type) {
       case PostActions.ADD_POST:
         return tassign(state, { postList: state.postList.concat(action.payload) });
-      
+
       case PostActions.UPDATE_POST:
         return tassign(state, { postList: state.postList.map(post => {
           if (post.id === action.payload.id){
@@ -23,15 +23,12 @@ export function postReducer(state: PostState = INITIAL_STATE, action: any): any 
             }
           })
         });
-      
       case PostActions.DELETE_POST:
         return tassign(state, { postList: state.postList.filter(post => {
           if (post.id !== action.payload.id) { return post; }
       })});
-      /* Not in use?
       case PostActions.GET_POSTS:
           return tassign(state, {postList: action.payload})
-      */
       default:
 
       return state;

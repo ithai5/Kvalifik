@@ -34,7 +34,8 @@ export class LoginComponent implements OnInit {
       password: this.loginInfo.value.password,
       returnSecureToken: true,
     }
-    this.authService.login(userDetails)
+    this.userActions.login(userDetails )
+    /*this.authService.login(userDetails)*/
 
   }
 /*

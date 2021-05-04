@@ -21,7 +21,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ViewPostComponent } from './POST/view-post/view-post.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { NgReduxModule, NgRedux } from '@angular-redux/store';
+import {NgReduxModule, NgRedux, DevToolsExtension} from '@angular-redux/store';
 import { NgReduxRouterModule, NgReduxRouter } from '@angular-redux/router';
 import {AppState, rootReducer} from './redux/state/appState';
 import { FormsModule } from '@angular/forms';
@@ -62,8 +62,8 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class AppModule {
   constructor(private ngRedux: NgRedux<AppState>,
-              private ngReduxRouter: NgReduxRouter) {
-    this.ngRedux.configureStore(rootReducer, {});
+              private ngReduxRouter: NgReduxRouter, private devTool: DevToolsExtension) {
+    this.ngRedux.configureStore(rootReducer, {}, [],[ devTool.isEnabled() ? devTool.enhancer() : f => f]);
     ngReduxRouter.initialize();
     }
   }

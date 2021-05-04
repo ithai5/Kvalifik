@@ -15,38 +15,17 @@ import {Router} from '@angular/router';
 })
 export class AuthService extends ApiService{
 
-  constructor(private ngRedux: NgRedux<AppState>,private httpClient: HttpClient, private userActions: UserActions, private router: Router) {
+  constructor(private httpClient: HttpClient, private router: Router) {
     super();
   }
 
-  getIdToken() : string{
-    return this.ngRedux.getState().user.userToken
-  }
-
   login(loginInfo: any): any {
-    const apiToken = environment.tokenAPI;
-    const apiURL: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + apiToken;
-
+    const apiURL: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + environment.tokenAPI;
     return this.httpClient.post<any>(apiURL, loginInfo, this.getHttpHeader())
-      .subscribe((res: any) => {
-        const userInfo = {
-          email: res.email
-        } as User ;
-          this.userActions.login(userInfo, res.idToken);
-          this.loadPostList();
+      /*.subscribe((res: any) => {
+        console.log(res);
 
-      });
 
+      });*/
   }
-
-
-  loadPostList(): void {
-    this.httpClient.get(this.dbAccess("Posts", this.getIdToken()), this.getHttpHeader()).subscribe(res => {
-      INITIAL_STATE.postList = res as Post[];
-      this.router.navigate(['postList'])
-    });
-  }
-
-
-
 }
