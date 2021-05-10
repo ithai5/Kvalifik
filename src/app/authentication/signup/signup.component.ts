@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -17,7 +18,7 @@ export class SignupComponent implements OnInit {
     reEnterPassword : new FormControl('', Validators.required)
   });
 
-  constructor() {   }
+  constructor(private authService: AuthService) {   }
 
   ngOnInit(): void {
   }
@@ -29,5 +30,15 @@ export class SignupComponent implements OnInit {
   matchPasswords(): boolean{
     console.log(this.f);
     return (this.user.value.password === this.user.value.reEnterPassword);
+  }
+
+  signup(): void {
+    const signupInfo = {
+      email: this.user.value.email,
+      password: this.user.value.password,
+      returnSecureToken: true,
+    };
+
+    this.authService.signup(signupInfo);
   }
 }

@@ -11,6 +11,8 @@ import { PostActions } from '../../redux/actions/postActions';
   styleUrls: ['./postList.component.css']
 })
 export class PostListComponent implements OnInit {
+  //Disable func if not logged in
+  isLoggedIn: boolean = false;
   postList: Post[];
   displayedColumns: string [] = ['title', 'createdDate', 'likeCount' , 'status', 'edit'];
   public search: string = '';
@@ -26,14 +28,12 @@ export class PostListComponent implements OnInit {
 
     this.ngRedux.select(state => state.postList).subscribe(res => {
       this.postList = res.postList
-/*
-      console.log(response)
-      this.postList = Object.entries(response.postList).map(([key, value])=>{
-        return value; // converting object into array
-      })
-      console.log(this.postList)
-*/
     });
+
+    if (this.ngRedux.getState().user.userInfo !== null) {
+      this.isLoggedIn = true;
+    }
+    
   }
 
   timeForTable(stringDate: string): string {
@@ -47,6 +47,7 @@ export class PostListComponent implements OnInit {
       // VERY IMPORTANT LINE, THIS IS THE KEY POINT TO SUCCES, WITHOUT IT THE PROGRAM WOULDN'T WORK AT ALL
         this.router.navigate(['/postList/edit/'], {state: {data: {post: editablePost, toCreate: false}}});
   }
+  
   deletePost(post: Post): void{
     this.postActions.deletePost(post);
 

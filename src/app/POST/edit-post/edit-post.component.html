@@ -1,4 +1,5 @@
 <form [formGroup]="post"  class="edit-post">
+  
   <mat-form-field class="example-full-width">
     <mat-label>Title</mat-label>
     <input id="postTitle" matInput formControlName="title" [(ngModel)]="editablePost.title"/>
@@ -8,11 +9,13 @@
     <mat-label>Text</mat-label>
     <textarea id="postContent" matInput formControlName="content" [(ngModel)]="editablePost.content"></textarea>
   </mat-form-field>
+  
   <div> <!--add media, not functional yet-->
-    <button  mat-raised-button (click)="openDialog('photos')"  color="primary">Photo(s)</button>
+    <button mat-raised-button (click)="openDialog('photos')"  color="primary">Photo(s)</button>
     <button mat-raised-button (click)="openDialog('Video')" color="primary">Video</button>
     <button mat-raised-button (click)="openDialog('Podcast')" color="primary">Podcast</button>
   </div>
+  
   <mat-label>Select Collection</mat-label>
   <mat-select> <!--choose from collections need to be implemented-->
     <mat-option value="one">First Collection</mat-option>

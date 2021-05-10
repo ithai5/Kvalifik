@@ -15,6 +15,7 @@ export class PostActions {
   static GET_POSTS = 'GET_POSTS';
 
   addPost(post: Post): void {
+    this.postService.createPost(post);
     this.ngRedux.dispatch({
       type: PostActions.ADD_POST,
       payload: post,
@@ -22,6 +23,8 @@ export class PostActions {
   }
 
   updatePost(updatePost: Post): void{
+    this.postService.updatePost(updatePost);
+
     this.ngRedux.dispatch({
       type: PostActions.UPDATE_POST,
       payload: updatePost
@@ -29,6 +32,8 @@ export class PostActions {
   }
 
   deletePost(deletePost: Post): void{
+    this.postService.deletePost(deletePost);
+    
     this.ngRedux.dispatch({
       type: PostActions.DELETE_POST,
       payload: deletePost

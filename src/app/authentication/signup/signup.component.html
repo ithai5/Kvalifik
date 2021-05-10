@@ -1,11 +1,11 @@
 
-<form [formGroup]="user" (ngSubmit)="onSubmit()">
+<form [formGroup]="user" (ngSubmit)="signup()">
     <div>
       <label>Username:
       <input formControlName="username" type="text" required="true" minlength="4" id="username">
       </label>
       <span *ngIf="user.controls.username.value.length<4 && user.controls.username.dirty">
-        user name must be longer then 4
+        user name must be longer than 4
       </span>
     </div>
     <div>

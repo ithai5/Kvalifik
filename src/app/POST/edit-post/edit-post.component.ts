@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'src/app/entities/post';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PostActions } from '../../redux/actions/postActions'
-import { PostService } from 'src/app/service/post.service';
 
 @Component({
   selector: 'app-edit-post',
@@ -12,7 +11,7 @@ import { PostService } from 'src/app/service/post.service';
 })
 export class EditPostComponent implements OnInit {
 
-  editablePost: any;
+  editablePost: Post;
   toCreate: boolean;
   /*
     post = new FormGroup({
@@ -24,16 +23,19 @@ export class EditPostComponent implements OnInit {
     title : new FormControl('', Validators.required),
     content : new FormControl('', Validators.required),
     picture : new FormControl()
-
   });
 
   constructor(private route: ActivatedRoute,
-    private postService: PostService,
+    private postActions: PostActions,
     private router: Router)
     {}
 
   ngOnInit(): void {
+    console.log("ngOnInit history.state: ", history.state.data.post);
+    
+
     this.editablePost = history.state.data.post;
+    console.log("ngOnInit editablePost: ", this.editablePost);
     this.toCreate = history.state.data.toCreate;
 
   }
@@ -43,15 +45,24 @@ export class EditPostComponent implements OnInit {
 
   onSubmitCreate(): void{
     this.post.value.createdDate = new Date();
-    this.postService.createPost(this.post.value);
+    this.postActions.addPost(this.post.value);
     this.router.navigate(['/postList/']);
   }
 
   onSubmitUpdate(): void{
-    const post: Post = this.post.value;
-    post.createdDate = new Date();
+    //The created date should stay the same, but maybe find a different way of displaying time of update?
+    //this.post.value.createdDate = new Date();
+
+    this.editablePost.title = this.post.value.title;
+    this.editablePost.content = this.post.value.content;
+
+    console.log("update method: ", this.editablePost);
+    
+
+    this.postActions.updatePost(this.editablePost);
     this.router.navigate(['/postList/']);
   }
   getPicture(url: string): void{
+    
   }
 }
