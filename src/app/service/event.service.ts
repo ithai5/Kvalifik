@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { DataService } from './data.service';
+// import { DataService } from './data.service';
 import { Event } from '../entities/event';
 
 @Injectable({
@@ -12,8 +12,8 @@ export class EventService {
     headers: new HttpHeaders({'content-type': 'application.json'})
   }
 
-  constructor(dataService: DataService, private httpClient: HttpClient) {
-    this.events = dataService.getEvents();
+  constructor(private httpClient: HttpClient) {
+    // this.events = dataService.getEvents();
   }
 
   getEvents(): Event[]{

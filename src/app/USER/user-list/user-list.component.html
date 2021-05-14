@@ -1,0 +1,47 @@
+<button mat-stroked-button color="primary"(click)="createUser()" id="createUserButton" [disabled]="!isLoggedIn">Create New User!</button>
+<div class="flexHeader">
+  <h3>User</h3>
+</div>
+
+<!-- <div class="flexGrid">
+  <mat-form-field>
+    <input matInput type="text" [(ngModel)]="" placeholder="Search a user" />
+  </mat-form-field>
+</div> -->
+
+<!--<table mat-table [dataSource]="postList | postFilter: search" >-->
+  <table mat-table [dataSource]="userList">
+   <ng-container matColumnDef="firstName">
+     <th mat-header-cell *matHeaderCellDef> First Name </th>
+     <td mat-cell *matCellDef="let user"> {{user.firstName}}</td>
+   </ng-container>
+   <ng-container matColumnDef="lastName">
+     <th mat-header-cell *matHeaderCellDef> Last Name </th>
+     <td mat-cell *matCellDef="let user"> {{user.lastName}}</td>
+   </ng-container>
+   <ng-container matColumnDef="email">
+     <th mat-header-cell *matHeaderCellDef> Email </th>
+     <td mat-cell *matCellDef="let user"> {{user.email}}👍</td>
+   </ng-container>
+   <ng-container matColumnDef="title">
+     <th mat-header-cell *matHeaderCellDef> Title </th>
+     <td mat-cell *matCellDef="let user"> {{user.title}}</td>
+   </ng-container>
+   <ng-container matColumnDef="image">
+     <th mat-header-cell *matHeaderCellDef> Image </th>
+     <td mat-cell *matCellDef="let user"> {{user.image}}</td>
+   </ng-container>
+   <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let user">
+      <button mat-stroked-button color="primary" (click)="editUser(user)" class="edit-button">Edit</button>
+      <button mat-stroked-button color="primary" (click)="viewUser(user)" class="view-button">View</button>
+      <button mat-stroked-button color="primary" (click)="deleteUser(user)" class="delete-button">Delete</button>
+    </td>
+  </ng-container>
+
+   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+ </table>
+
+

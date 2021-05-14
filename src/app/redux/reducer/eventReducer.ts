@@ -2,11 +2,11 @@ import { EventActions } from '../actions/eventActions'
 import { EventListState } from '../state/eventListState';
 import { tassign } from 'tassign';
 import { EventService } from 'src/app/service/event.service';
-import { DataService } from 'src/app/service/data.service';
+// import { DataService } from 'src/app/service/data.service';
 
 
 export const INITIAL_STATE: EventListState = {
-  eventList: new EventService( new DataService(), null).getEvents()
+  eventList: []
 };
 
 export function eventReducer(state: EventListState = INITIAL_STATE, action: any): any {
