@@ -7,6 +7,7 @@ import {EditPostComponent} from './POST/edit-post/edit-post.component';
 import {ViewPostComponent} from './POST/view-post/view-post.component';
 import {LoginComponent} from './authentication/login/login.component';
 import {SignupComponent} from './authentication/signup/signup.component';
+import { UserListComponent } from './USER/user-list/user-list.component';
 
 
 const routes: Routes = [
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path: 'postList/edit', component: EditPostComponent},
   {path: 'postList/:id', component: ViewPostComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'signup', component: SignupComponent}
+  {path: 'signup', component: SignupComponent},
+  {path: 'users', component: UserListComponent}
 
 ];
 
