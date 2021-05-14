@@ -33,12 +33,7 @@ export class UserActions{
       };
       
       //sign up a new user to the Firebase Authentication
-      const response: any = this.authService.signup(signupInfo) ;
-
-      
-
-      //now add the user to the DB
-      this.userService.createUser(user);
+      this.authService.signup(signupInfo, user);
 
       this.ngRedux.dispatch({
         type: UserActions.ADD_USER,

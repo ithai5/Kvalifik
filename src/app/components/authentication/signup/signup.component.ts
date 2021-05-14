@@ -43,6 +43,6 @@ export class SignupComponent implements OnInit {
       email: this.user.value.email
     } as unknown as User;
 
-    this.userActions.addUser(this.user.value, this.user.value.password);
+    this.userActions.addUser(userInfo, this.user.value.password);
   }
 }

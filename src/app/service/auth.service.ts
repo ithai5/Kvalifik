@@ -3,13 +3,15 @@ import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {ApiService} from './api.service';
 import {Router} from '@angular/router';
+import { UserService } from './user.service';
+import { User } from '../entities/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService extends ApiService{
 
-  constructor(private httpClient: HttpClient, private router: Router) {
+  constructor(private httpClient: HttpClient, private router: Router, private userService: UserService) {
     super();
   }
 
@@ -18,9 +20,13 @@ export class AuthService extends ApiService{
     return this.httpClient.post<any>(apiURL, loginInfo, this.getHttpHeader())
   }
 
-  signup(signupInfo: any): any {
+  signup(signupInfo: any, user: User): any {
     const apiURL: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.tokenAPI;
     
-    return this.httpClient.post<any>(apiURL, signupInfo, this.getHttpHeader()).subscribe();
+    return this.httpClient.post<any>(apiURL, signupInfo, this.getHttpHeader()).subscribe(res => {
+      console.log(res);
+      
+      this.userService.signupUser(user, res.idToken);
+    });
   }
 }

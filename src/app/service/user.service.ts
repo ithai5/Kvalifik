@@ -17,6 +17,10 @@ export class UserService extends ApiService {
     super();
   }
 
+  signupUser(user: User, auth: string): void {
+    this.httpClient.post(this.dbAccess("Users", auth), user, this.getHttpHeader()).subscribe();
+  }
+
   //creates a new user
   createUser(user: User): void {
     this.httpClient.post(this.dbAccess("Users", this.ngRedux.getState().user.userToken), user, this.getHttpHeader()).subscribe();
