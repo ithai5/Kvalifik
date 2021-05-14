@@ -30,6 +30,9 @@ export class SignupComponent implements OnInit {
   matchPasswords(): boolean{
     return (this.user.value.password === this.user.value.reEnterPassword);
   }
+  passwordLength(): boolean{
+    return this.user.value.password.length < 6
+  }
 
   signup(): void {
     const signupInfo = {
