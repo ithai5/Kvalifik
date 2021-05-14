@@ -1,9 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { Post } from '../../entities/post';
-import { AppState } from '../../redux/state/appState';
+import { Post } from '../../../entities/post';
+import { AppState } from '../../../redux/state/appState';
 import { NgRedux } from '@angular-redux/store';
-import { PostActions } from '../../redux/actions/postActions';
+import { PostActions } from '../../../redux/actions/postActions';
 
 @Component({
   selector: 'app-postList',

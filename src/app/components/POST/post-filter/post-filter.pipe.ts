@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {Post} from '../../entities/post';
+import {Post} from '../../../entities/post';
 import {logger} from 'codelyzer/util/logger';
 
 @Pipe({

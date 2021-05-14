@@ -20,6 +20,7 @@ export class AuthService extends ApiService{
 
   signup(signupInfo: any): any {
     const apiURL: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.tokenAPI;
+    
     return this.httpClient.post<any>(apiURL, signupInfo, this.getHttpHeader()).subscribe();
   }
 }

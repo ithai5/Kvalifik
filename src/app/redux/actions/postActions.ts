@@ -42,7 +42,7 @@ export class PostActions {
 
   getPostList(): void {
     this.postService.getPostList().subscribe(res => {
-      let postList;
+      let postList: Post[];
 
       postList = Object.entries(res).map(([key, value])=>{
         let post = value as Post;

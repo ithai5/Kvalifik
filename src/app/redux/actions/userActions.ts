@@ -3,15 +3,17 @@ import { NgRedux } from '@angular-redux/store';
 import { User } from 'src/app/entities/user';
 import { AppState } from '../state/appState';
 import {AuthService} from '../../service/auth.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Injectable({ providedIn: 'root'})
 export class UserActions{
-    constructor(private ngRedux: NgRedux<AppState>, private authService: AuthService) {}
+    constructor(private ngRedux: NgRedux<AppState>, private authService: AuthService, private userService: UserService) {}
     
     static LOGIN = 'LOGIN';
     static ADD_USER = 'ADD_USER';
     static UPDATE_USER = 'UPDATE_USER';
-    static DELETE_USER = 'GET_USERS';
+    static DELETE_USER = 'DELETE_USER';
+    static GET_USERS = 'GET_USERS';
 
 
     login(user: any): void {
@@ -43,20 +45,22 @@ export class UserActions{
         payload: deleteUser
       })
     }
-    /*
-    getUsers(): void {
-      let userList;
-
-      userList = Object.entries(res).map(([key, value])=>{
-        let user = value as User;
-        return {... user, id: key}; // converting object into array
-      })
+    
+    getUserList(): void {
+      this.userService.getUserList().subscribe(res => {
+        let userList: User[];
+        
+        userList = Object.entries(res).map(([key, value])=>{
+          let user = value as User;
+          return {... user, id: key}; // converting object into array
+        });
       
-      this.ngRedux.dispatch({
-        //call to post service
-        type: UserActions.GET_USERS,
-        payload: userList
-      })
+        this.ngRedux.dispatch({
+          //call to post service
+          type: UserActions.GET_USERS,
+          payload: userList
+        });
+      }); 
     }
-    */
+    
 }

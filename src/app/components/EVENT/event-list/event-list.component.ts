@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EventActions } from 'src/app/redux/actions/eventActions';
 import { AppState } from 'src/app/redux/state/appState';
-import { Event } from '../../entities/event';
-import { EventService } from '../../service/event.service'; 
+import { Event } from '../../../entities/event';
+import { EventService } from '../../../service/event.service'; 
 
 @Component({
   selector: 'app-event-list',

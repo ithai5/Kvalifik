@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'src/app/entities/post';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { PostActions } from '../../redux/actions/postActions'
+import { PostActions } from '../../../redux/actions/postActions'
 
 @Component({
   selector: 'app-edit-post',

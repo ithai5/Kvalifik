@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '../../entities/user';
-import { AppState } from '../../redux/state/appState';
+import { User } from '../../../entities/user';
+import { AppState } from '../../../redux/state/appState';
 import { NgRedux } from '@angular-redux/store';
-import { UserActions } from '../../redux/actions/userActions';
+import { UserActions } from '../../../redux/actions/userActions';
 
 
 
@@ -23,8 +23,18 @@ export class UserListComponent implements OnInit {
               private userActions: UserActions) { }
 
   ngOnInit(): void {
-    // this.userActions.
+    this.userActions.getUserList();
 
+    this.ngRedux.select(state => state.user.userList).subscribe(res => {
+      this.userList = res;
+    });
+
+    if (this.ngRedux.getState().user.userInfo !== null) {
+      this.isLoggedIn = true;
+    }
+
+    console.log(this.userList);
+    
   }
 
   createUser(){}

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Post} from '../../entities/post';
+import {Post} from '../../../entities/post';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
