@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/service/auth.service';
+import { User } from 'src/app/entities/user';
+import { UserActions } from 'src/app/redux/actions/userActions';
 
 @Component({
   selector: 'app-signup',
@@ -18,7 +19,7 @@ export class SignupComponent implements OnInit {
     reEnterPassword : new FormControl('', Validators.required)
   });
 
-  constructor(private authService: AuthService) {   }
+  constructor(private userActions: UserActions) {   }
 
   ngOnInit(): void {
   }
@@ -32,12 +33,13 @@ export class SignupComponent implements OnInit {
   }
 
   signup(): void {
-    const signupInfo = {
-      email: this.user.value.email,
-      password: this.user.value.password,
-      returnSecureToken: true,
-    };
+    const userInfo = {
+      username: this.user.value.username,
+      firstName: this.user.value.firstName,
+      lastName: this.user.value.lastName,
+      email: this.user.value.email
+    } as unknown as User;
 
-    this.authService.signup(signupInfo);
+    this.userActions.addUser(this.user.value, this.user.value.password);
   }
 }

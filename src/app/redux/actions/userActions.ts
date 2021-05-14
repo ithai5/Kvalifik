@@ -25,11 +25,26 @@ export class UserActions{
         })
     }
 
-    addUser(user: User): void {
+    addUser(user: User, password: string): void {
+      const signupInfo = {
+        email: user.email,
+        password: password,
+        returnSecureToken: true,
+      };
+      
+      //sign up a new user to the Firebase Authentication
+      const response: any = this.authService.signup(signupInfo) ;
+
+      
+
+      //now add the user to the DB
+      this.userService.createUser(user);
+
       this.ngRedux.dispatch({
         type: UserActions.ADD_USER,
         payload: user
       });
+    
     }
 
     updateUser(updateUser: User): void {
