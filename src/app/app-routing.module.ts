@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {EventsComponent} from './events/events.component';
+import {EventListComponent} from './EVENT/event-list/event-list.component';
 import {CollectionsComponent} from './collections/collections.component';
 import {PostListComponent} from './POST/postList/postList.component';
 import {EditPostComponent} from './POST/edit-post/edit-post.component';
@@ -10,7 +10,7 @@ import {SignupComponent} from './authentication/signup/signup.component';
 
 
 const routes: Routes = [
-  {path: 'events', component: EventsComponent},
+  {path: 'events', component: EventListComponent},
   {path: 'collections', component: CollectionsComponent},
   {path: 'postList', component: PostListComponent},
   {path: 'postList/edit', component: EditPostComponent},

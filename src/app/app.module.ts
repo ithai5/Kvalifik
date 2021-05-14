@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { EventsComponent } from './events/events.component';
+import { EventListComponent } from './EVENT/event-list/event-list.component';
 import { PostListComponent } from './POST/postList/postList.component';
 import { CollectionsComponent } from './collections/collections.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -29,12 +29,15 @@ import { LoginComponent } from './authentication/login/login.component';
 import { SignupComponent } from './authentication/signup/signup.component';
 import { PostFilterPipe } from './POST/post-filter/post-filter.pipe';
 import { MatCardModule } from '@angular/material/card';
+import { EventComponent } from './EVENT/event/event.component';
+import { ViewEventComponent } from './EVENT/view-event/view-event.component';
+import { EditEventComponent } from './EVENT/edit-event/edit-event.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    EventsComponent,
+    EventListComponent,
     PostListComponent,
     CollectionsComponent,
     SidenavComponent,
@@ -43,6 +46,9 @@ import { MatCardModule } from '@angular/material/card';
     LoginComponent,
     SignupComponent,
     PostFilterPipe,
+    EventComponent,
+    ViewEventComponent,
+    EditEventComponent,
   ],
     imports: [
         BrowserModule,
