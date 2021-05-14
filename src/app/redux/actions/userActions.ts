@@ -11,7 +11,6 @@ export class UserActions{
 
     login(user: any): void {
         this.authService.login(user).subscribe(res =>{
-          console.log("hello there", res);
           this.ngRedux.dispatch({
             type: UserActions.LOGIN,
             payload: {userInfo: res.email, userToken: res.idToken},

@@ -28,7 +28,6 @@ export class SignupComponent implements OnInit {
     console.log(this.user);
   }
   matchPasswords(): boolean{
-    console.log(this.f);
     return (this.user.value.password === this.user.value.reEnterPassword);
   }
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpHeaders} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 
 @Injectable({
@@ -16,8 +16,6 @@ export class ApiService {
     }
   }
   dbAccess (list, auth): string {
-    console.log("auth: ", auth, " list: ", list);
-    console.log( `${environment.databaseURL}${list}.json?auth=${auth}`);
      return  `${environment.databaseURL}${list}.json?auth=${auth}`
   }
 }

@@ -33,7 +33,7 @@ export class PostActions {
 
   deletePost(deletePost: Post): void{
     this.postService.deletePost(deletePost);
-    
+
     this.ngRedux.dispatch({
       type: PostActions.DELETE_POST,
       payload: deletePost
@@ -42,20 +42,18 @@ export class PostActions {
 
   getPostList(): void {
     this.postService.getPostList().subscribe(res => {
-      console.log("this is from the post action: ", res);
       let postList;
 
       postList = Object.entries(res).map(([key, value])=>{
         let post = value as Post;
         return {... post, id: key}; // converting object into array
       })
-      
+
       this.ngRedux.dispatch({
         //call to post service
         type: PostActions.GET_POSTS,
         payload: postList
       })
     })
-/*    */
   }
 }

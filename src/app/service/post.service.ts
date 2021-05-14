@@ -27,15 +27,12 @@ export class PostService extends ApiService{
   }
 
   updatePost(post: Post): void {
-    console.log(post);
-    console.log(this.dbAccess(`Posts/${post.id}/`, this.ngRedux.getState().user.userToken));
-    
+
     this.httpClient.patch(this.dbAccess(`Posts/${post.id}`, this.ngRedux.getState().user.userToken), post, this.getHttpHeader()).subscribe();
   }
 
   deletePost(post: Post): void {
-    console.log(this.dbAccess(`Posts/${post.id}/`, this.ngRedux.getState().user.userToken));
-    
+
     //This method requires the .subscribe() part, otherwise the database doesn't change
     this.httpClient.delete(this.dbAccess(`Posts/${post.id}/`, this.ngRedux.getState().user.userToken), this.getHttpHeader()).subscribe();
   }

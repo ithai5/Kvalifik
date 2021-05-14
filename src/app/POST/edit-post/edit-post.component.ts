@@ -13,12 +13,6 @@ export class EditPostComponent implements OnInit {
 
   editablePost: Post;
   toCreate: boolean;
-  /*
-    post = new FormGroup({
-    title: new FormControl(''),
-    content: new FormControl('');
-  });
-  */
   post = new FormGroup({
     title : new FormControl('', Validators.required),
     content : new FormControl('', Validators.required),
@@ -32,10 +26,9 @@ export class EditPostComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("ngOnInit history.state: ", history.state.data.post);
-    
+
 
     this.editablePost = history.state.data.post;
-    console.log("ngOnInit editablePost: ", this.editablePost);
     this.toCreate = history.state.data.toCreate;
 
   }
@@ -51,18 +44,9 @@ export class EditPostComponent implements OnInit {
 
   onSubmitUpdate(): void{
     //The created date should stay the same, but maybe find a different way of displaying time of update?
-    //this.post.value.createdDate = new Date();
-
     this.editablePost.title = this.post.value.title;
     this.editablePost.content = this.post.value.content;
-
-    console.log("update method: ", this.editablePost);
-    
-
     this.postActions.updatePost(this.editablePost);
     this.router.navigate(['/postList/']);
-  }
-  getPicture(url: string): void{
-    
   }
 }

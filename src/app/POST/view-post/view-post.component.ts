@@ -15,7 +15,6 @@ export class ViewPostComponent implements OnInit {
 
   ngOnInit(): void {
     this.viewedPost = history.state.data.post;
-    console.log(this.viewedPost);
   }
 
 }
