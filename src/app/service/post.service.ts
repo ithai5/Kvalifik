@@ -9,9 +9,10 @@ import {AppState} from '../redux/state/appState';
 @Injectable({
   providedIn: 'root'
 })
+
 export class PostService extends ApiService{
 
-  constructor(private authService: AuthService, private httpClient: HttpClient, private ngRedux: NgRedux<AppState>) {
+  constructor(private httpClient: HttpClient, private ngRedux: NgRedux<AppState>) {
     super();
   }
 
