@@ -4,7 +4,7 @@
 
 .container {
   display: flex;
-  height: 90%;
+  height: auto;
 }
 
 .sidenav {

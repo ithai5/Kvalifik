@@ -22,14 +22,13 @@ export function eventReducer(state: EventListState = INITIAL_STATE, action: any)
             return event;
           }
       })
-    });  
+    });
     case EventActions.DELETE_EVENT:
       return tassign(state, { eventList: state.eventList.filter(event => {
         if(event.id !== action.payload.id) {
           return event;
         }
       })});
-
       default:
         return state;
   }

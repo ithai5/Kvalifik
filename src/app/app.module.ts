@@ -34,6 +34,8 @@ import { ViewEventComponent } from './components/EVENT/view-event/view-event.com
 import { EditEventComponent } from './components/EVENT/edit-event/edit-event.component';
 import { UserComponent } from './components/USER/user/user.component';
 import { UserListComponent } from './components/USER/user-list/user-list.component';
+import { FeedComponent } from './components/feed/feed.component';
+import { CardComponent } from './components/card/card.component';
 
 
 @NgModule({
@@ -53,6 +55,8 @@ import { UserListComponent } from './components/USER/user-list/user-list.compone
     EditEventComponent,
     UserComponent,
     UserListComponent,
+    FeedComponent,
+    CardComponent,
   ],
     imports: [
         BrowserModule,

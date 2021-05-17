@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import { AppState } from '../state/appState';
+import {EventService} from '../../service/event.service';
 
 @Injectable({ providedIn: 'root' })
 export class EventActions {
-    constructor(private ngRedux: NgRedux<AppState>){}
+    constructor(private ngRedux: NgRedux<AppState>, private eventService: EventService){}
     static ADD_EVENT = 'ADD_EVENT';
     static UPDATE_EVENT = 'UPDATE_EVENT';
     static DELETE_EVENT = 'DELETE_EVENT';
+    static GET_EVENT_LIST = 'GET_EVENT_LIST';
 
     addEvent(event: Event): void {
         this.ngRedux.dispatch({
@@ -26,5 +28,18 @@ export class EventActions {
           type: EventActions.DELETE_EVENT,
           payload: deleteEvent
         });
+      }
+      getEventList(): void{
+        this.eventService.getEventList().subscribe(res => {
+          let eventList: Event[];
+          eventList = Object.entries(res).map(([key, value]) => {
+            let event = value as Event
+            return {... event,  id: key}
+          })
+          this.ngRedux.dispatch({
+            type: EventActions.GET_EVENT_LIST,
+            payload: eventList
+          })
+        })
       }
 }
