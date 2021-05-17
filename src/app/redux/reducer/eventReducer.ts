@@ -13,6 +13,7 @@ export function eventReducer(state: EventState = INITIAL_STATE, action: any): an
   switch(action.type) {
     case EventActions.ADD_EVENT:
       return tassign(state, { eventList: state.eventList.concat(action.payload) });
+    
     case EventActions.UPDATE_EVENT:
       return tassign(state, { eventList: state.eventList.map(event => {
         if (event.id === action.payload.id) {
@@ -23,13 +24,18 @@ export function eventReducer(state: EventState = INITIAL_STATE, action: any): an
           }
       })
     });
+    
     case EventActions.DELETE_EVENT:
       return tassign(state, { eventList: state.eventList.filter(event => {
         if(event.id !== action.payload.id) {
           return event;
         }
       })});
+    
+    case EventActions.GET_EVENT_LIST:
+      return tassign(state, {eventList: action.payload});
+    
       default:
-        return state;
+      return state;
   }
 }

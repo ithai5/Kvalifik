@@ -27,7 +27,7 @@ export class PostListComponent implements OnInit {
     this.postActions.getPostList();
 
     this.ngRedux.select(state => state.postState).subscribe(res => {
-      this.postList = res.postList
+      this.postList = res.postList;
     });
 
     if (this.ngRedux.getState().userState.userInfo !== null) {

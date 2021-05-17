@@ -11,19 +11,31 @@ import {WebActivity} from '../../entities/web-activity';
   styleUrls: ['./feed.component.css']
 })
 export class FeedComponent implements OnInit {
-  webActivities : WebActivity [] = []
+  webActivities: WebActivity[] = []
 
   constructor(private postActions: PostActions, private eventActions: EventActions, private ngRedux: NgRedux<AppState>) { }
 
   ngOnInit(): void {
+    //Load these lists into the Redux state (requires being logged in)
     this.postActions.getPostList();
     this.eventActions.getEventList();
+    
+    //Declare separate lists for each type of WebActivity
+    let postList: WebActivity[];
+    let eventList: WebActivity[];
+
+    //Instantiate postList with data from the state
     this.ngRedux.select(state => state.postState).subscribe(res => {
-      this.webActivities.push(res.postList as unknown as WebActivity)
-    })
+      postList = res.postList as WebActivity[];
+    });
+
+    //Instantiate eventList with data from the state
     this.ngRedux.select(state => state.eventState).subscribe(res => {
-      this.webActivities.push(res.eventList as unknown as WebActivity)
-    })
+      eventList = res.eventList as WebActivity[];   
+    });
+    
+    //Concat the two arrays, and instantiate webActvities with the combined data
+    this.webActivities = postList.concat(eventList);
   }
 
 }

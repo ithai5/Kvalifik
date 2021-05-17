@@ -27,7 +27,7 @@ export function postReducer(state: PostState = INITIAL_STATE, action: any): any 
         return tassign(state, { postList: state.postList.filter(post => {
           if (post.id !== action.payload.id) { return post; }
       })});
-      case PostActions.GET_POSTS:
+      case PostActions.GET_POST_LIST:
           return tassign(state, {postList: action.payload})
       default:
 

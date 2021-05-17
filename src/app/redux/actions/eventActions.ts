@@ -17,29 +17,35 @@ export class EventActions {
             payload: event,
         })
     }
+    
     updatePost(updateEvent: Event): void{
         this.ngRedux.dispatch({
           type: EventActions.UPDATE_EVENT,
           payload: updateEvent
         });
-      }
-    deletePost(deleteEvent: Event): void{
+    }
+    
+      deletePost(deleteEvent: Event): void{
         this.ngRedux.dispatch({
           type: EventActions.DELETE_EVENT,
           payload: deleteEvent
         });
-      }
-      getEventList(): void{
-        this.eventService.getEventList().subscribe(res => {
-          let eventList: Event[];
-          eventList = Object.entries(res).map(([key, value]) => {
-            let event = value as Event
-            return {... event,  id: key}
-          })
-          this.ngRedux.dispatch({
-            type: EventActions.GET_EVENT_LIST,
-            payload: eventList
-          })
-        })
-      }
+    }
+
+    getEventList(): void{
+      this.eventService.getEventList().subscribe(res => {
+        
+        let eventList: Event[];
+        
+        eventList = Object.entries(res).map(([key, value]) => {
+          let event = value as Event;
+          return {... event,  id: key};
+        });
+        
+        this.ngRedux.dispatch({
+          type: EventActions.GET_EVENT_LIST,
+          payload: eventList
+        });
+      });
+    }
 }

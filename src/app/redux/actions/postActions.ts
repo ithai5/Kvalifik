@@ -12,7 +12,7 @@ export class PostActions {
   static ADD_POST = 'ADD_POST';
   static UPDATE_POST = 'UPDATE_POST';
   static DELETE_POST = 'DELETE_POST';
-  static GET_POSTS = 'GET_POSTS';
+  static GET_POST_LIST = 'GET_POST_LIST';
 
   addPost(post: Post): void {
     this.postService.createPost(post);
@@ -51,7 +51,7 @@ export class PostActions {
 
       this.ngRedux.dispatch({
         //call to post service
-        type: PostActions.GET_POSTS,
+        type: PostActions.GET_POST_LIST,
         payload: postList
       })
     })
