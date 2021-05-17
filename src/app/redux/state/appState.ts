@@ -3,17 +3,17 @@ import { PostState } from './postState';
 import { postReducer } from '../reducer/postReducer'
 import { UserState } from './userState';
 import { userReducer } from '../reducer/userReducer';
-import { EventListState } from './eventListState';
+import { EventState } from './eventState';
 import { eventReducer } from '../reducer/eventReducer';
 
 export class AppState {
-    postList?: PostState;
-    user?: UserState;
-    eventList?: EventListState;
+    postState?: PostState;
+    userState?: UserState;
+    eventState?: EventState;
 }
 
 export const rootReducer = combineReducers<AppState>({
-    postList: postReducer,
-    user: userReducer,
-    eventList: eventReducer
+    postState: postReducer,
+    userState: userReducer,
+    eventState: eventReducer
     });

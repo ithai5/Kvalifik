@@ -18,22 +18,22 @@ export class PostService extends ApiService{
 
   //Creates a new post
   createPost(post: Post): void{
-    this.httpClient.post(this.dbAccess("Posts", this.ngRedux.getState().user.userToken), post, this.getHttpHeader()).subscribe();
+    this.httpClient.post(this.dbAccess("Posts", this.ngRedux.getState().userState.userToken), post, this.getHttpHeader()).subscribe();
   }
 
   //load post from Firebase
   getPostList(): any {
-    return this.httpClient.get(this.dbAccess("Posts",this.ngRedux.getState().user.userToken), this.getHttpHeader());
+    return this.httpClient.get(this.dbAccess("Posts",this.ngRedux.getState().userState.userToken), this.getHttpHeader());
   }
 
   updatePost(post: Post): void {
 
-    this.httpClient.patch(this.dbAccess(`Posts/${post.id}`, this.ngRedux.getState().user.userToken), post, this.getHttpHeader()).subscribe();
+    this.httpClient.patch(this.dbAccess(`Posts/${post.id}`, this.ngRedux.getState().userState.userToken), post, this.getHttpHeader()).subscribe();
   }
 
   deletePost(post: Post): void {
 
     //This method requires the .subscribe() part, otherwise the database doesn't change
-    this.httpClient.delete(this.dbAccess(`Posts/${post.id}/`, this.ngRedux.getState().user.userToken), this.getHttpHeader()).subscribe();
+    this.httpClient.delete(this.dbAccess(`Posts/${post.id}/`, this.ngRedux.getState().userState.userToken), this.getHttpHeader()).subscribe();
   }
 }

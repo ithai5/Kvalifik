@@ -25,11 +25,11 @@ export class UserListComponent implements OnInit {
   ngOnInit(): void {
     this.userActions.getUserList();
 
-    this.ngRedux.select(state => state.user.userList).subscribe(res => {
+    this.ngRedux.select(state => state.userState.userList).subscribe(res => {
       this.userList = res;
     });
 
-    if (this.ngRedux.getState().user.userInfo !== null) {
+    if (this.ngRedux.getState().userState.userInfo !== null) {
       this.isLoggedIn = true;
     }
 

@@ -20,7 +20,7 @@ export class EventService extends ApiService{
   }
 
   getEventList(): any{
-    return this.httpClient.get(this.dbAccess("Events", this.ngRedux.getState().user.userToken), this.getHttpHeader())
+    return this.httpClient.get(this.dbAccess("Events", this.ngRedux.getState().userState.userToken), this.getHttpHeader())
   }
   getEventById(id: any): Event{
     return this.events.find((event) => event.id === id);

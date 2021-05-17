@@ -1,15 +1,15 @@
 import { EventActions } from '../actions/eventActions'
-import { EventListState } from '../state/eventListState';
+import { EventState } from '../state/eventState';
 import { tassign } from 'tassign';
 import { EventService } from 'src/app/service/event.service';
 // import { DataService } from 'src/app/service/data.service';
 
 
-export const INITIAL_STATE: EventListState = {
+export const INITIAL_STATE: EventState = {
   eventList: []
 };
 
-export function eventReducer(state: EventListState = INITIAL_STATE, action: any): any {
+export function eventReducer(state: EventState = INITIAL_STATE, action: any): any {
   switch(action.type) {
     case EventActions.ADD_EVENT:
       return tassign(state, { eventList: state.eventList.concat(action.payload) });

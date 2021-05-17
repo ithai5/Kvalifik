@@ -1,5 +1,5 @@
 import { Event } from '../../entities/event';
 
-export class EventListState {
+export class EventState {
   eventList: Event[];
 }

@@ -23,22 +23,22 @@ export class UserService extends ApiService {
 
   //creates a new user
   createUser(user: User): void {
-    this.httpClient.post(this.dbAccess("Users", this.ngRedux.getState().user.userToken), user, this.getHttpHeader()).subscribe();
+    this.httpClient.post(this.dbAccess("Users", this.ngRedux.getState().userState.userToken), user, this.getHttpHeader()).subscribe();
   }
 
   //load user from Firebase
   getUserList(): any {
-    return this.httpClient.get(this.dbAccess("Users", this.ngRedux.getState().user.userToken), this.getHttpHeader())
+    return this.httpClient.get(this.dbAccess("Users", this.ngRedux.getState().userState.userToken), this.getHttpHeader())
   }
 
   //update user
   updateUser(user: User): void {
-    this.httpClient.patch(this.dbAccess(`User/${user.email}`, this.ngRedux.getState().user.userToken), user, this.getHttpHeader()).subscribe();
+    this.httpClient.patch(this.dbAccess(`User/${user.email}`, this.ngRedux.getState().userState.userToken), user, this.getHttpHeader()).subscribe();
   }
 
   //delete user
   deleteUser(user: User): void {
-    this.httpClient.delete(this.dbAccess(`User/${user.email}`, this.ngRedux.getState().user.userToken), this.getHttpHeader()).subscribe();
+    this.httpClient.delete(this.dbAccess(`User/${user.email}`, this.ngRedux.getState().userState.userToken), this.getHttpHeader()).subscribe();
   }
 
 }

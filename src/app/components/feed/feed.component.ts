@@ -18,10 +18,10 @@ export class FeedComponent implements OnInit {
   ngOnInit(): void {
     this.postActions.getPostList();
     this.eventActions.getEventList();
-    this.ngRedux.select(state => state.postList).subscribe(res => {
+    this.ngRedux.select(state => state.postState).subscribe(res => {
       this.webActivities.push(res.postList as unknown as WebActivity)
     })
-    this.ngRedux.select(state => state.eventList).subscribe(res => {
+    this.ngRedux.select(state => state.eventState).subscribe(res => {
       this.webActivities.push(res.eventList as unknown as WebActivity)
     })
   }
