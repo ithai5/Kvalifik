@@ -16,16 +16,16 @@ export class AuthService extends ApiService{
   }
 
   login(loginInfo: any): any {
-    const apiURL: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + environment.tokenAPI;
+    const apiURL: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + environment.firebase.apiKey;
     return this.httpClient.post<any>(apiURL, loginInfo, this.getHttpHeader())
   }
 
   signup(signupInfo: any, user: User): any {
-    const apiURL: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.tokenAPI;
-    
+    const apiURL: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebase.apiKey;
+
     return this.httpClient.post<any>(apiURL, signupInfo, this.getHttpHeader()).subscribe(res => {
       console.log(res);
-      
+
       this.userService.signupUser(user, res.idToken);
     });
   }

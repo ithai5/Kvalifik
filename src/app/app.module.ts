@@ -37,6 +37,9 @@ import { UserListComponent } from './components/USER/user-list/user-list.compone
 import { FeedComponent } from './components/feed/feed.component';
 import { CardComponent } from './components/card/card.component';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+
 
 @NgModule({
   declarations: [
@@ -69,7 +72,11 @@ import { CardComponent } from './components/card/card.component';
         /** -------------- */
         HttpClientModule,
         NgReduxModule,
-        NgReduxRouterModule.forRoot()
+
+        AngularFireModule,
+        AngularFireStorageModule,
+
+      NgReduxRouterModule.forRoot()
     ],
   providers: [],
   bootstrap: [AppComponent]

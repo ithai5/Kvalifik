@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'src/app/entities/post';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PostActions } from '../../../redux/actions/postActions'
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-edit-post',

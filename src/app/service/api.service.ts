@@ -16,7 +16,7 @@ export class ApiService {
     }
   }
   dbAccess (list, auth): string {
-     return  `${environment.databaseURL}${list}.json?auth=${auth}`
+     return  `${environment.firebase.databaseURL}${list}.json?auth=${auth}`
   }
 }
 
