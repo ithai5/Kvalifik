@@ -11,9 +11,10 @@
   </mat-form-field>
   
   <div> <!--add media, not functional yet-->
-    <button mat-raised-button (click)="openDialog('photos')"  color="primary">Photo(s)</button>
+    <!-- <button mat-raised-button (click)="openDialog('photos')"  color="primary">Photo(s)</button>
     <button mat-raised-button (click)="openDialog('Video')" color="primary">Video</button>
-    <button mat-raised-button (click)="openDialog('Podcast')" color="primary">Podcast</button>
+    <button mat-raised-button (click)="openDialog('Podcast')" color="primary">Podcast</button> -->
+    <input type="file" (change)="openDialog($event)" accept=".png,.jpg" />
   </div>
   
   <mat-label>Select Collection</mat-label>

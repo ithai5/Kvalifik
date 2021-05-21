@@ -7,7 +7,7 @@ import { EventListComponent } from './components/EVENT/event-list/event-list.com
 import { PostListComponent } from './components/POST/postList/postList.component';
 import { CollectionsComponent } from './components/collections/collections.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
@@ -19,7 +19,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ViewPostComponent } from './components/POST/view-post/view-post.component';
-import {  ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgReduxModule, NgRedux, DevToolsExtension } from '@angular-redux/store';
 import { NgReduxRouterModule, NgReduxRouter } from '@angular-redux/router';
@@ -39,6 +39,9 @@ import { CardComponent } from './components/card/card.component';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { environment } from 'src/environments/environment';
+
+
 
 
 @NgModule({
@@ -73,8 +76,8 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
         HttpClientModule,
         NgReduxModule,
 
-        AngularFireModule,
         AngularFireStorageModule,
+        AngularFireModule.initializeApp(environment.firebase, "cloud"),
 
       NgReduxRouterModule.forRoot()
     ],

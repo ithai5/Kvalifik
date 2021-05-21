@@ -3,7 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'src/app/entities/post';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PostActions } from '../../../redux/actions/postActions'
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { v4 as uuidv4 } from 'uuid';
+
 
 @Component({
   selector: 'app-edit-post',
@@ -22,19 +24,22 @@ export class EditPostComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private postActions: PostActions,
-    private router: Router)
+    private router: Router,
+    private firebase: AngularFireStorage)
     {}
 
   ngOnInit(): void {
     console.log("ngOnInit history.state: ", history.state.data.post);
 
-
     this.editablePost = history.state.data.post;
     this.toCreate = history.state.data.toCreate;
-
+  
   }
 
-  openDialog(type: string): void {
+  openDialog(event: any): string { 
+    const uuid = uuidv4();
+    this.firebase.upload(uuid+"", event.target.files[0]);
+    return uuid;
   }
 
   onSubmitCreate(): void{
