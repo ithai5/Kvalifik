@@ -33,7 +33,6 @@ export class EditPostComponent implements OnInit {
 
     this.editablePost = history.state.data.post;
     this.toCreate = history.state.data.toCreate;
-  
   }
 
   openDialog(event: any): string { 
