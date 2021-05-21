@@ -1,4 +1,16 @@
-<p>{{viewedPost}}
-look at the console!! it is right over there</p>
-<!--
-https://material.angular.io/components/card/examples-->
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{post.title}}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image src="{{post.media}}" alt="">
+  <mat-card-content>
+    <p>
+      {{post.content}}
+    </p>
+    <img mat-card-image src="{{post.media[0]}}">
+  </mat-card-content>
+  <mat-card-actions>
+    <!-- <button mat-button>👍({{webActivity.likeCount}})</button>-->
+  </mat-card-actions>
+</mat-card>

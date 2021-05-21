@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Post} from '../../../entities/post';
 import {ActivatedRoute} from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
+import {FirebaseStorageService} from '../../../service/firebase-storage.service';
 
 
 @Component({
@@ -11,13 +12,13 @@ import { AngularFireStorage } from '@angular/fire/storage';
 })
 export class ViewPostComponent implements OnInit {
 
-  viewedPost: Post;
+  post: Post;
 
-  constructor(private route: ActivatedRoute, private firebase: AngularFireStorage) { }
+  constructor(private route: ActivatedRoute, private firebase: FirebaseStorageService) { }
 
   ngOnInit(): void {
-    this.viewedPost = history.state.data.post;
-    this.firebase.ref("newPicture").getDownloadURL().subscribe( (url) => console.log(url) );
+    this.post = history.state.data.post;
+    this.firebase.downloadImageFromStorage(this.post.media).subscribe(res => this.post.media = res);
   }
 
 }
