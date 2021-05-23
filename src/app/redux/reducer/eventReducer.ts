@@ -35,6 +35,9 @@ export function eventReducer(state: EventState = INITIAL_STATE, action: any): an
     case EventActions.GET_EVENT_LIST:
       return tassign(state, {eventList: action.payload});
     
+    case EventActions.CLEAR_LIST:
+      return tassign(state, {eventList: []});
+
       default:
       return state;
   }

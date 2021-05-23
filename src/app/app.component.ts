@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { UserActions } from './redux/actions/userActions';
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Kvalifik';
+
+  constructor(private userActions: UserActions) {}
+
+  logout() {
+    this.userActions.logout();
+  }
 }

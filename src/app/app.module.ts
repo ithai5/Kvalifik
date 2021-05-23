@@ -40,6 +40,8 @@ import { CardComponent } from './components/card/card.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
+import { AuthService } from './service/auth.service';
+import { UserState } from './redux/state/userState';
 
 
 
@@ -86,8 +88,12 @@ import { environment } from 'src/environments/environment';
 })
 export class AppModule {
   constructor(private ngRedux: NgRedux<AppState>,
-              private ngReduxRouter: NgReduxRouter, private devTool: DevToolsExtension) {
-    this.ngRedux.configureStore(rootReducer, {}, [],[ devTool.isEnabled() ? devTool.enhancer() : f => f]);
+              private ngReduxRouter: NgReduxRouter,
+              private devTool: DevToolsExtension,
+              private authService: AuthService) {
+    const initState: UserState = this.authService.retrieveUserState();
+    
+    this.ngRedux.configureStore(rootReducer, {userState: initState}, [],[ devTool.isEnabled() ? devTool.enhancer() : f => f]);
     ngReduxRouter.initialize();
     }
   }

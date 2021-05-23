@@ -19,6 +19,12 @@
     Login
   </button>
   </span>
+  <span class="example-spacer"></span>
+  <span [style.cursor]="'pointer'" routerLink="/logout">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click)="logout()">
+    Logout
+  </button>
+  </span>
   <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
     <mat-icon>favorite</mat-icon>
   </button>

@@ -13,6 +13,7 @@ export class PostActions {
   static UPDATE_POST = 'UPDATE_POST';
   static DELETE_POST = 'DELETE_POST';
   static GET_POST_LIST = 'GET_POST_LIST';
+  static CLEAR_LIST = 'CLEAR_LIST';
 
   addPost(post: Post): void {
     this.postService.createPost(post);
@@ -53,7 +54,13 @@ export class PostActions {
         //call to post service
         type: PostActions.GET_POST_LIST,
         payload: postList
-      })
-    })
+      });
+    });
+  }
+
+  clearList(): void {
+    this.ngRedux.dispatch({
+      type: PostActions.CLEAR_LIST,
+    });
   }
 }

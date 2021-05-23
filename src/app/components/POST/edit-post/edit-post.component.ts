@@ -36,10 +36,19 @@ export class EditPostComponent implements OnInit {
   
   }
 
-  openDialog(event: any): string { 
-    const uuid = uuidv4();
-    this.firebase.upload(uuid+"", event.target.files[0]);
-    return uuid;
+  openDialog(event: any): void { 
+    const uuid = uuidv4() + "";
+    this.firebase.upload(uuid, event.target.files[0]);
+    this.firebase.ref(uuid).getDownloadURL().subscribe(res => {
+      console.log(res);
+      
+    });
+    console.log(
+      this.firebase.ref(uuid).getDownloadURL().subscribe(res => {
+      console.log(res);
+      })
+    );
+    
   }
 
   onSubmitCreate(): void{

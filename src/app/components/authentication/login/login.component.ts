@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 import {UserActions} from '../../../redux/actions/userActions';
 import {AuthService} from '../../../service/auth.service';
 
@@ -19,18 +20,21 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', [Validators.required])
   });
 
-  constructor(private httpClient: HttpClient, private userActions: UserActions, private authService: AuthService) { }
+  constructor(private httpClient: HttpClient, private userActions: UserActions, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  tryLogin() : void {
+  login() : void {
     const userDetails = {
       email: this.loginInfo.value.email,
       password: this.loginInfo.value.password,
       returnSecureToken: true,
     }
-    this.userActions.login(userDetails )
-
+    this.userActions.login(userDetails)
+    setTimeout(() => {
+      this.router.navigate(["postList"]);
+    }, 5000);
   }
+
 }

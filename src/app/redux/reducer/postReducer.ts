@@ -23,14 +23,19 @@ export function postReducer(state: PostState = INITIAL_STATE, action: any): any 
             }
           })
         });
+        
       case PostActions.DELETE_POST:
         return tassign(state, { postList: state.postList.filter(post => {
           if (post.id !== action.payload.id) { return post; }
       })});
-      case PostActions.GET_POST_LIST:
-          return tassign(state, {postList: action.payload})
-      default:
 
-      return state;
+      case PostActions.GET_POST_LIST:
+        return tassign(state, {postList: action.payload});
+      
+      case PostActions.CLEAR_LIST:
+        return tassign(state, {postList: []});
+      
+      default:
+        return state;
   }
 }

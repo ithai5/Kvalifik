@@ -19,6 +19,7 @@ const routes: Routes = [
   {path: 'postList/:id', component: ViewPostComponent},
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
+  {path: 'logout', redirectTo: 'postList'},
   {path: 'users', component: UserListComponent},
   {path: 'feed', component: FeedComponent}
 

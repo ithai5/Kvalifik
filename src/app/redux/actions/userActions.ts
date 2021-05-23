@@ -4,25 +4,53 @@ import { User } from 'src/app/entities/user';
 import { AppState } from '../state/appState';
 import {AuthService} from '../../service/auth.service';
 import { UserService } from 'src/app/service/user.service';
+import { UserState } from '../state/userState';
+import { EventActions } from './eventActions';
+import { PostActions } from './postActions';
 
 @Injectable({ providedIn: 'root'})
 export class UserActions{
-    constructor(private ngRedux: NgRedux<AppState>, private authService: AuthService, private userService: UserService) {}
+    constructor(private ngRedux: NgRedux<AppState>,
+      private authService: AuthService,
+      private userService: UserService,
+      private eventActions: EventActions,
+      private postActions: PostActions) {}
     
     static LOGIN = 'LOGIN';
+    static LOGOUT = 'LOGOUT';
     static ADD_USER = 'ADD_USER';
     static UPDATE_USER = 'UPDATE_USER';
     static DELETE_USER = 'DELETE_USER';
-    static GET_USERS = 'GET_USERS';
+    static GET_USER_LIST = 'GET_USER_LIST';
+    static CLEAR_LIST = 'CLEAR_LIST';
 
 
     login(user: any): void {
         this.authService.login(user).subscribe(res =>{
+          //Save the relevant info from UserState to Window.localStorage
+          this.authService.persistUserState( {
+            userInfo: res.email,
+            userToken: res.idToken,
+          } as UserState);
+
           this.ngRedux.dispatch({
             type: UserActions.LOGIN,
             payload: {userInfo: res.email, userToken: res.idToken},
           });
+          
         })
+    }
+
+    logout() {
+      this.authService.clearPersistedState();
+      //Clear userinfo from store
+      this.ngRedux.dispatch({
+        type: UserActions.LOGOUT,
+      });
+      //Clear the other stores
+      this.eventActions.clearList();
+      this.postActions.clearList();
+      this.clearList();
     }
 
     addUser(user: User, password: string): void {
@@ -67,10 +95,16 @@ export class UserActions{
       
         this.ngRedux.dispatch({
           //call to post service
-          type: UserActions.GET_USERS,
+          type: UserActions.GET_USER_LIST,
           payload: userList
         });
       }); 
+    }
+
+    clearList(): void {
+      this.ngRedux.dispatch({
+        type: UserActions.CLEAR_LIST,
+      });
     }
     
 }

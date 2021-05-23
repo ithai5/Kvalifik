@@ -10,6 +10,7 @@ export class EventActions {
     static UPDATE_EVENT = 'UPDATE_EVENT';
     static DELETE_EVENT = 'DELETE_EVENT';
     static GET_EVENT_LIST = 'GET_EVENT_LIST';
+    static CLEAR_LIST = 'CLEAR_LIST';
 
     addEvent(event: Event): void {
         this.ngRedux.dispatch({
@@ -46,6 +47,12 @@ export class EventActions {
           type: EventActions.GET_EVENT_LIST,
           payload: eventList
         });
+      });
+    }
+
+    clearList(): void {
+      this.ngRedux.dispatch({
+        type: EventActions.CLEAR_LIST,
       });
     }
 }

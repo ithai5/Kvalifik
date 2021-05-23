@@ -5,6 +5,7 @@ import {ApiService} from './api.service';
 import {Router} from '@angular/router';
 import { UserService } from './user.service';
 import { User } from '../entities/user';
+import { UserState } from '../redux/state/userState';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +29,27 @@ export class AuthService extends ApiService{
 
       this.userService.signupUser(user, res.idToken);
     });
+  }
+
+  persistUserState(userState: UserState): void {
+    //Store the information from a UserState object in
+    //the Window.localStorage
+    localStorage.setItem("userState", JSON.stringify(userState));
+  }
+
+  retrieveUserState(): UserState {
+    const fromLocal: UserState = JSON.parse(localStorage.getItem("userState")) as unknown as UserState;
+    let userState: UserState;
+
+    if (fromLocal !== null) {
+      userState = {userInfo: fromLocal.userInfo, userToken: fromLocal.userToken} as UserState;
+    } else {
+      userState = {userInfo: null, userToken: ''} as UserState;
+    }
+    return userState;
+  }
+
+  clearPersistedState(): void {
+    localStorage.removeItem("userState");
   }
 }
