@@ -1,5 +1,11 @@
+
+
 <p>events works!</p>
-<button>CreateNewNotImplemented</button>
+
+<button mat-stroked-button color="primary" (click)="createEvent()" id="createEventButton" >CreateNewNotImplemented</button>
+
+
+
 <table mat-table [dataSource]="events" >
     <ng-container matColumnDef="title">
         <th mat-header-cell *matHeaderCellDef>Title</th>

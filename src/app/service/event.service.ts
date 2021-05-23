@@ -19,6 +19,11 @@ export class EventService extends ApiService{
     super();
   }
 
+
+  //load post from Firebase
+  /* getPostList(): any {
+    return this.httpClient.get(this.dbAccess("Posts",this.ngRedux.getState().userState.userToken), this.getHttpHeader());
+  } */
   getEventList(): any{
     return this.httpClient.get(this.dbAccess("Events", this.ngRedux.getState().userState.userToken), this.getHttpHeader())
   }
