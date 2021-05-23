@@ -1,7 +1,8 @@
 export class WebActivity{
   title: string;
   content: string;
-  media: string [];
+  // media: string []; firebase realtime database cannot store array
+  media: string;
   status: string; /* is published, draft, past consider using enum*/
   /** lastModified: Date; not sure if needed */
   createdDate: Date;

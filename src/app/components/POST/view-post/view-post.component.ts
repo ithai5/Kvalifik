@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Post} from '../../../entities/post';
 import {ActivatedRoute} from '@angular/router';
+import { AngularFireStorage } from '@angular/fire/storage';
+import {FirebaseStorageService} from '../../../service/firebase-storage.service';
+
 
 @Component({
   selector: 'app-view-post',
@@ -9,12 +12,13 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class ViewPostComponent implements OnInit {
 
-  viewedPost: Post;
+  post: Post;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private firebase: FirebaseStorageService) { }
 
   ngOnInit(): void {
-    this.viewedPost = history.state.data.post;
+    this.post = history.state.data.post;
+    this.firebase.downloadImageFromStorage(this.post.media).subscribe(res => this.post.media = res);
   }
 
 }

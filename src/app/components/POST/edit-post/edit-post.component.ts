@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PostActions } from '../../../redux/actions/postActions'
 import { AngularFireStorage } from '@angular/fire/storage';
 import { v4 as uuidv4 } from 'uuid';
+import {FirebaseStorageService} from '../../../service/firebase-storage.service';
 
 
 @Component({
@@ -16,43 +17,35 @@ export class EditPostComponent implements OnInit {
 
   editablePost: Post;
   toCreate: boolean;
+  media: string;
   post = new FormGroup({
     title : new FormControl('', Validators.required),
     content : new FormControl('', Validators.required),
-    picture : new FormControl()
+    picture : new FormControl(),
+
   });
 
   constructor(private route: ActivatedRoute,
     private postActions: PostActions,
     private router: Router,
-    private firebase: AngularFireStorage)
+    private storage: FirebaseStorageService)
     {}
 
   ngOnInit(): void {
-    console.log("ngOnInit history.state: ", history.state.data.post);
-
     this.editablePost = history.state.data.post;
     this.toCreate = history.state.data.toCreate;
-  
   }
 
-  openDialog(event: any): void { 
-    const uuid = uuidv4() + "";
-    this.firebase.upload(uuid, event.target.files[0]);
-    this.firebase.ref(uuid).getDownloadURL().subscribe(res => {
-      console.log(res);
-      
-    });
-    console.log(
-      this.firebase.ref(uuid).getDownloadURL().subscribe(res => {
-      console.log(res);
-      })
-    );
-    
+  openDialog(event: any): void {
+    const uuid = uuidv4();
+    this.storage.uploadImageToStorage(uuid+"", event.target.files[0]);
+    this.media = uuid;
   }
 
   onSubmitCreate(): void{
     this.post.value.createdDate = new Date();
+    this.post.value.media = this.media;
+    console.log(this.media);
     this.postActions.addPost(this.post.value);
     this.router.navigate(['/postList/']);
   }
