@@ -24,7 +24,7 @@ export class PostListComponent implements OnInit {
 
   ngOnInit(): void {
     // need to make a call to the backend to get all posts
-    this.postActions.getPostList();
+    this.postActions.getPostListForUser();
 
     this.ngRedux.select(state => state.postState).subscribe(res => {
       this.postList = res.postList;

@@ -25,7 +25,6 @@ export class AuthService extends ApiService{
     const apiURL: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebase.apiKey;
 
     return this.httpClient.post<any>(apiURL, signupInfo, this.getHttpHeader()).subscribe(res => {
-      console.log(res);
 
       this.userService.signupUser(user, res.idToken);
     });

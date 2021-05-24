@@ -32,6 +32,9 @@ export function postReducer(state: PostState = INITIAL_STATE, action: any): any 
       case PostActions.GET_POST_LIST:
         return tassign(state, {postList: action.payload});
       
+      case PostActions.GET_POST_LIST_FOR_USER:
+        return tassign(state, {postList: action.payload});
+
       case PostActions.CLEAR_LIST:
         return tassign(state, {postList: []});
       

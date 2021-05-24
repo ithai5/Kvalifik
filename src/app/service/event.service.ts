@@ -47,8 +47,7 @@ export class EventService extends ApiService{
 
   // TODO: Can potentially be moved to some other place at some other time :)
   uploadPictureToAPI(imgPath: string): any{
-    const apiURL: string = 'https://api.imgbb.com/1/upload?key=73a7cdce0b5d789489867d977f6bcb7a&image=' + imgPath;
-    console.log('boop!')
+    const apiURL: string = 'https://api.imgbb.com/1/upload?key=73a7cdce0b5d789489867d977f6bcb7a&image=' + imgPath
     console.log(this.httpClient.post<any>(apiURL, imgPath, this.httpOptions).subscribe());
   }
 

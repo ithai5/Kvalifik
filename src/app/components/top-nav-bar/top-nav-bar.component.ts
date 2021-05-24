@@ -21,6 +21,5 @@ export class TopNavBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.isUserLoggedIn = this.ngRedux.getState().userState.userInfo !== null
-    console.log("top-nav-bar loaded");
   }
 }

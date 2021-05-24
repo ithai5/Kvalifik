@@ -45,9 +45,6 @@ export class FeedComponent implements OnInit {
 
   sortByDate(webActivityList:  WebActivity[]){
     return webActivityList.sort((a,b) => {
-      console.log("this is object a:", a.createdDate , "this is object b: ", b.createdDate);
-      console.log(a.createdDate > b.createdDate);
-
       if(a.createdDate < b.createdDate) return -1;
       if (a.createdDate > b.createdDate) return 1;
       return 0;

@@ -36,4 +36,12 @@ export class PostService extends ApiService{
     //This method requires the .subscribe() part, otherwise the database doesn't change
     this.httpClient.delete(this.dbAccess(`Posts/${post.id}/`, this.ngRedux.getState().userState.userToken), this.getHttpHeader()).subscribe();
   }
+
+  getPostListForUser(): any {
+    //Itai: "This so ugly! ;_;7"
+    const parameters: string = this.ngRedux.getState().userState.userToken + "&orderBy=\"author\"" +
+    "&equalTo=\"" + this.ngRedux.getState().userState.userInfo + "\"";
+    
+    return this.httpClient.get(this.dbAccess("Posts", parameters), this.getHttpHeader());
+  }
 }

@@ -32,8 +32,6 @@ export class UserListComponent implements OnInit {
     if (this.ngRedux.getState().userState.userInfo !== null) {
       this.isLoggedIn = true;
     }
-
-    console.log(this.userList);
     
   }
 
