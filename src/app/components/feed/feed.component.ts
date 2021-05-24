@@ -26,15 +26,22 @@ export class FeedComponent implements OnInit {
 
     //Instantiate postList with data from the state
     this.ngRedux.select(state => state.postState).subscribe(res => {
-      // postList = res.postList as WebActivity[];
-      this.webActivities =this.sortByDate(
-        [... res.postList as WebActivity[], ... this.webActivities])
+      postList = res.postList.map((post) => {
+        return {... post, type: "post"};
+      }) as WebActivity[];
 
+      
+      this.webActivities =this.sortByDate(
+        [... postList, ... this.webActivities]);
+      
     });
 
     //Instantiate eventList with data from the state
     this.ngRedux.select(state => state.eventState).subscribe(res => {
-      // eventList = res.eventList as WebActivity[];
+      eventList = res.eventList.map((event) => {
+        return {... event, type: "event"};
+      }) as WebActivity[];
+      
       this.webActivities = this.sortByDate(
         [... res.eventList as WebActivity[], ... this.webActivities])
     });

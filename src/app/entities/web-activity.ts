@@ -11,4 +11,5 @@ export class WebActivity{
   collection: object []; /*might be that the post dont need to hold this info*/
   isPinned: boolean;
   author: string;
+  type: string;
 }
