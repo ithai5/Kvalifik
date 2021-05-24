@@ -42,6 +42,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './service/auth.service';
 import { UserState } from './redux/state/userState';
+import { TopNavBarComponent } from './components/top-nav-bar/top-nav-bar.component';
 
 
 
@@ -65,6 +66,7 @@ import { UserState } from './redux/state/userState';
     UserListComponent,
     FeedComponent,
     CardComponent,
+    TopNavBarComponent,
   ],
     imports: [
         BrowserModule,
@@ -92,7 +94,7 @@ export class AppModule {
               private devTool: DevToolsExtension,
               private authService: AuthService) {
     const initState: UserState = this.authService.retrieveUserState();
-    
+
     this.ngRedux.configureStore(rootReducer, {userState: initState}, [],[ devTool.isEnabled() ? devTool.enhancer() : f => f]);
     ngReduxRouter.initialize();
     }

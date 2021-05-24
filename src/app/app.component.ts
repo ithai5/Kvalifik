@@ -1,18 +1,12 @@
-import { Component } from '@angular/core';
-import { UserActions } from './redux/actions/userActions';
-
+import {Component, OnChanges, SimpleChanges} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent{
+
   title = 'Kvalifik';
 
-  constructor(private userActions: UserActions) {}
-
-  logout() {
-    this.userActions.logout();
-  }
 }

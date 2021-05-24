@@ -1,0 +1,33 @@
+<mat-toolbar>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>CBS Students (Kvalifik)</span>
+  <span class="example-spacer"></span>
+  <span class="example-spacer"></span>
+
+
+
+  <span [style.cursor]="'pointer'" routerLink="/logout">
+    <button *ngIf="isUserLoggedIn" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click)="logout()">
+      Logout
+    </button>
+  </span>
+
+    <span class="example-spacer"></span>
+    <span [style.cursor]="'pointer'" routerLink="/signup">
+      <button *ngIf="!isUserLoggedIn" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        Sign-up
+      </button>
+    </span>
+
+    <span class="example-spacer"></span>
+    <span [style.cursor]="'pointer'" routerLink="/login">
+      <button *ngIf="!isUserLoggedIn" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        Login
+      </button>
+    </span>
+
+
+</mat-toolbar>
+

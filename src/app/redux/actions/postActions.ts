@@ -47,7 +47,7 @@ export class PostActions {
 
       postList = Object.entries(res).map(([key, value])=>{
         let post = value as Post;
-        return {... post, id: key}; // converting object into array
+        return {... post, id: key, createdDate: new Date(post.createdDate)}; // converting object into array
       })
 
       this.ngRedux.dispatch({

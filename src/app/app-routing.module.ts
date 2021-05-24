@@ -9,6 +9,7 @@ import {LoginComponent} from './components/authentication/login/login.component'
 import {SignupComponent} from './components/authentication/signup/signup.component';
 import { UserListComponent } from './components/USER/user-list/user-list.component';
 import {FeedComponent} from './components/feed/feed.component';
+import {RouterGuard} from './router.guard';
 
 
 const routes: Routes = [
@@ -17,7 +18,7 @@ const routes: Routes = [
   {path: 'postList', component: PostListComponent},
   {path: 'postList/edit', component: EditPostComponent},
   {path: 'postList/:id', component: ViewPostComponent},
-  {path: 'login', component: LoginComponent},
+  {path: 'login', component: LoginComponent, canActivate: [RouterGuard]},
   {path: 'signup', component: SignupComponent},
   {path: 'logout', redirectTo: 'postList'},
   {path: 'users', component: UserListComponent},

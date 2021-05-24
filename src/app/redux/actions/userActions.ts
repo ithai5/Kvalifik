@@ -17,7 +17,7 @@ export class UserActions{
       private userService: UserService,
       private eventActions: EventActions,
       private postActions: PostActions) {}
-    
+
     static LOGIN = 'LOGIN';
     static LOGOUT = 'LOGOUT';
     static ADD_USER = 'ADD_USER';
@@ -34,14 +34,15 @@ export class UserActions{
           userInfo: res.email,
           userToken: res.idToken,
         } as UserState);
-
-        this.router.navigate(["postList"]);
-
+        window.location.href = "/feed"
+/*
+        this.router.navigateByUrl('/feed')
+*/
         this.ngRedux.dispatch({
           type: UserActions.LOGIN,
           payload: {userInfo: res.email, userToken: res.idToken},
         });
-        
+
       })
     }
 
@@ -55,6 +56,7 @@ export class UserActions{
       this.eventActions.clearList();
       this.postActions.clearList();
       this.clearList();
+      window.location.href = "/"
     }
 
     addUser(user: User, password: string): void {
@@ -63,7 +65,7 @@ export class UserActions{
         password: password,
         returnSecureToken: true,
       };
-      
+
       //sign up a new user to the Firebase Authentication
       this.authService.signup(signupInfo, user);
 
@@ -71,7 +73,7 @@ export class UserActions{
         type: UserActions.ADD_USER,
         payload: user
       });
-    
+
     }
 
     updateUser(updateUser: User): void {
@@ -87,22 +89,22 @@ export class UserActions{
         payload: deleteUser
       })
     }
-    
+
     getUserList(): void {
       this.userService.getUserList().subscribe(res => {
         let userList: User[];
-        
+
         userList = Object.entries(res).map(([key, value])=>{
           let user = value as User;
           return {... user, id: key}; // converting object into array
         });
-      
+
         this.ngRedux.dispatch({
           //call to post service
           type: UserActions.GET_USER_LIST,
           payload: userList
         });
-      }); 
+      });
     }
 
     clearList(): void {
@@ -110,5 +112,5 @@ export class UserActions{
         type: UserActions.CLEAR_LIST,
       });
     }
-    
+
 }

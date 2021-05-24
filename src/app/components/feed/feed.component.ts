@@ -19,23 +19,41 @@ export class FeedComponent implements OnInit {
     //Load these lists into the Redux state (requires being logged in)
     this.postActions.getPostList();
     this.eventActions.getEventList();
-    
+
     //Declare separate lists for each type of WebActivity
     let postList: WebActivity[];
     let eventList: WebActivity[];
 
     //Instantiate postList with data from the state
     this.ngRedux.select(state => state.postState).subscribe(res => {
-      postList = res.postList as WebActivity[];
+      // postList = res.postList as WebActivity[];
+      this.webActivities =this.sortByDate(
+        [... res.postList as WebActivity[], ... this.webActivities])
+
     });
 
     //Instantiate eventList with data from the state
     this.ngRedux.select(state => state.eventState).subscribe(res => {
-      eventList = res.eventList as WebActivity[];   
+      // eventList = res.eventList as WebActivity[];
+      this.webActivities = this.sortByDate(
+        [... res.eventList as WebActivity[], ... this.webActivities])
     });
-    
-    //Concat the two arrays, and instantiate webActvities with the combined data
-    this.webActivities = postList.concat(eventList);
+
+    //Concat the two arrays, and instantiate webActivities with the combined data
+    //this.webActivities = postList.concat(eventList);
   }
+
+  sortByDate(webActivityList:  WebActivity[]){
+    return webActivityList.sort((a,b) => {
+      console.log("this is object a:", a.createdDate , "this is object b: ", b.createdDate);
+      console.log(a.createdDate > b.createdDate);
+
+      if(a.createdDate < b.createdDate) return -1;
+      if (a.createdDate > b.createdDate) return 1;
+      return 0;
+    })
+  }
+
+
 
 }
