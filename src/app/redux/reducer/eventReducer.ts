@@ -1,8 +1,6 @@
 import { EventActions } from '../actions/eventActions'
 import { EventState } from '../state/eventState';
 import { tassign } from 'tassign';
-import { EventService } from 'src/app/service/event.service';
-// import { DataService } from 'src/app/service/data.service';
 
 
 export const INITIAL_STATE: EventState = {
@@ -10,6 +8,7 @@ export const INITIAL_STATE: EventState = {
 };
 
 export function eventReducer(state: EventState = INITIAL_STATE, action: any): any {
+  
   switch(action.type) {
     case EventActions.ADD_EVENT:
       return tassign(state, { eventList: state.eventList.concat(action.payload) });
@@ -23,8 +22,7 @@ export function eventReducer(state: EventState = INITIAL_STATE, action: any): an
             return event;
           }
       })
-    });
-    
+    }); 
     case EventActions.DELETE_EVENT:
       return tassign(state, { eventList: state.eventList.filter(event => {
         if(event.id !== action.payload.id) {
@@ -34,8 +32,8 @@ export function eventReducer(state: EventState = INITIAL_STATE, action: any): an
     
     case EventActions.GET_EVENT_LIST:
       return tassign(state, {eventList: action.payload});
-    
       default:
+
       return state;
   }
 }

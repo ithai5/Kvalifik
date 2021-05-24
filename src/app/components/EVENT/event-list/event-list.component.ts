@@ -16,6 +16,7 @@ export class EventListComponent implements OnInit {
   isLoggedIn: boolean = false;
   events: Event[];
   displayedColumns: String[] = ['title', 'startDate', 'location', 'status', 'edit'];
+  public search: string = '';
   
   constructor(private eventService: EventService, 
               private router: Router,
@@ -23,21 +24,35 @@ export class EventListComponent implements OnInit {
               private eventActions: EventActions) { }
 
   ngOnInit(): void {
-      this.ngRedux.select(state => state.eventState).subscribe(Response => {
+    // Call to backend to get all events
+    this.eventActions.getEventList();
+
+    this.ngRedux.select(state => state.eventState).subscribe(Response => {
       this.events = Response.eventList;
     })
+
+    if(this.ngRedux.getState().userState.userInfo !== null){
+      this.isLoggedIn = true;
+    }
+
   }
 
   timeForTable(stringDate: string): string {
     const date: Date = new Date(stringDate);
     return date.getDate() + '/' + date.getMonth() + 1 + '/' + date.getFullYear();
   }
-  viewEvent(viewedEvent: Event): void{}
-  editEvent(editableEvent: Event): void {}
-  deleteEvent(event: Event): void {}
+  viewEvent(viewedEvent: Event): void{
+    this.router.navigate(['/eventList/:id'], {state: {data: {event: viewedEvent}}})
+  }
+  editEvent(editableEvent: Event): void {
+    this.router.navigate(['/eventList/edit/'], {state: {data: {event: editableEvent, toCreate: false}}});
+  }
+  deleteEvent(event: Event): void {
+    this.eventActions.deleteEvent(event);
+  }
   
   createEvent(): void { 
-    this.router.navigate(['eventList/edit/'], {state: {
+    this.router.navigate(['/eventList/edit/'], {state: {
                                                 data: {
                                                   event: {
                                                     title: 'your title here', 

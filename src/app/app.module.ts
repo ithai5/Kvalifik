@@ -40,6 +40,7 @@ import { CardComponent } from './components/card/card.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
+import { EventFilterPipe } from './components/EVENT/event-filter/event-filter.pipe';
 
 
 
@@ -63,6 +64,7 @@ import { environment } from 'src/environments/environment';
     UserListComponent,
     FeedComponent,
     CardComponent,
+    EventFilterPipe,
   ],
     imports: [
         BrowserModule,
