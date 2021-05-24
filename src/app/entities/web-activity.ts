@@ -1,3 +1,5 @@
+import {User} from './user';
+
 export class WebActivity{
   title: string;
   content: string;
@@ -9,4 +11,5 @@ export class WebActivity{
   collection: object []; /*might be that the post dont need to hold this info*/
   isPinned: boolean;
   responsible: string []; /*represent owner of the post*/
+  author: User;
 }

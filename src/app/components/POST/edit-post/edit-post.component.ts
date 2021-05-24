@@ -45,6 +45,8 @@ export class EditPostComponent implements OnInit {
   onSubmitCreate(): void{
     this.post.value.createdDate = new Date();
     this.post.value.media = this.media;
+
+    // need to get the user that currently logged in and add it to the post author
     console.log(this.media);
     this.postActions.addPost(this.post.value);
     this.router.navigate(['/postList/']);
