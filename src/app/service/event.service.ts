@@ -20,35 +20,27 @@ export class EventService extends ApiService{
   }
 
 
-  //load post from Firebase
-  /* getPostList(): any {
-    return this.httpClient.get(this.dbAccess("Posts",this.ngRedux.getState().userState.userToken), this.getHttpHeader());
-  } */
+ 
   getEventList(): any{
     return this.httpClient.get(this.dbAccess("Events", this.ngRedux.getState().userState.userToken), this.getHttpHeader())
   }
-  getEventById(id: any): Event{
-    return this.events.find((event) => event.id === id);
+  
+  createEvent(newEvent: Event): void {
+    this.httpClient.post(this.dbAccess("Events", this.ngRedux.getState().userState.userToken), newEvent, this.getHttpHeader()).subscribe();
   }
-  createEvent(newEvent: Event): Event {
-    newEvent.id = this.events.length + 1;
-    this.events.push(newEvent);
-    return newEvent;
+  updateEvent(event: Event): void { 
+    this.httpClient.patch(this.dbAccess(`Events/${event.id}`, this.ngRedux.getState().userState.userToken), event, this.getHttpHeader()).subscribe();
   }
-  updateEvent(id: any, updateInfo: Event): Event { // Can't pass in the event itself?
-    const eventToUpdate = this.getEventById(id);
-    const keyList = Object.keys(updateInfo); // Don't know what this is, check up on it.
-    keyList.forEach((key) => eventToUpdate[key] = updateInfo[key])
-    return eventToUpdate;
-  }
-  deleteEvent(id: any): Event{
-    return this.events.splice(this.events.indexOf(this.getEventById(id)), 1)[0];
+  deleteEvent(event: Event): void{
+    this.httpClient.delete(this.dbAccess(`Events/${event.id}/`, this.ngRedux.getState().userState.userToken), this.getHttpHeader()).subscribe();
+    //return this.events.splice(this.events.indexOf(this.getEventById(id)), 1)[0];
   }
 
   // TODO: Can potentially be moved to some other place at some other time :)
-  uploadPictureToAPI(imgPath: string): any{
-    const apiURL: string = 'https://api.imgbb.com/1/upload?key=73a7cdce0b5d789489867d977f6bcb7a&image=' + imgPath
-    console.log(this.httpClient.post<any>(apiURL, imgPath, this.httpOptions).subscribe());
-  }
+  //uploadPictureToAPI(imgPath: string): any{
+    //const apiURL: string = 'https://api.imgbb.com/1/upload?key=73a7cdce0b5d789489867d977f6bcb7a&image=' + imgPath;
+    //console.log('boop!')
+    //console.log(this.httpClient.post<any>(apiURL, imgPath, this.httpOptions).subscribe());
+  //}
 
 }

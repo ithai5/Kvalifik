@@ -43,6 +43,7 @@ import { environment } from 'src/environments/environment';
 import { AuthService } from './service/auth.service';
 import { UserState } from './redux/state/userState';
 import { TopNavBarComponent } from './components/top-nav-bar/top-nav-bar.component';
+import { EventFilterPipe } from './components/EVENT/event-filter/event-filter.pipe';
 
 
 
@@ -67,6 +68,7 @@ import { TopNavBarComponent } from './components/top-nav-bar/top-nav-bar.compone
     FeedComponent,
     CardComponent,
     TopNavBarComponent,
+    EventFilterPipe,
   ],
     imports: [
         BrowserModule,

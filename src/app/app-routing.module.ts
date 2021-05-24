@@ -10,10 +10,15 @@ import {SignupComponent} from './components/authentication/signup/signup.compone
 import { UserListComponent } from './components/USER/user-list/user-list.component';
 import {FeedComponent} from './components/feed/feed.component';
 import {RouterGuard} from './router.guard';
+import { EditEventComponent } from './components/EVENT/edit-event/edit-event.component';
+import { ViewEventComponent } from './components/EVENT/view-event/view-event.component';
 
 
 const routes: Routes = [
-  {path: 'events', component: EventListComponent},
+  {path: 'eventList', component: EventListComponent},
+  {path: 'eventList/edit', component: EditEventComponent},
+  {path: 'eventList/:id', component: ViewEventComponent},
+  //{path: 'eventList', component: EditEventComponent},
   {path: 'collections', component: CollectionsComponent},
   {path: 'postList', component: PostListComponent},
   {path: 'postList/edit', component: EditPostComponent},

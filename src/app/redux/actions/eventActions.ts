@@ -4,6 +4,7 @@ import { AppState } from '../state/appState';
 import {EventService} from '../../service/event.service';
 import { Event } from 'src/app/entities/event';
 
+
 @Injectable({ providedIn: 'root' })
 export class EventActions {
     constructor(private ngRedux: NgRedux<AppState>, private eventService: EventService){}
@@ -14,20 +15,24 @@ export class EventActions {
     static CLEAR_LIST = 'CLEAR_LIST';
 
     addEvent(event: Event): void {
+        this.eventService.createEvent(event);
         this.ngRedux.dispatch({
             type: EventActions.ADD_EVENT,
             payload: event,
         })
     }
+    
+    updateEvent(updateEvent: Event): void{
+        this.eventService.updateEvent(updateEvent);
 
-    updatePost(updateEvent: Event): void{
         this.ngRedux.dispatch({
           type: EventActions.UPDATE_EVENT,
           payload: updateEvent
         });
     }
-
-      deletePost(deleteEvent: Event): void{
+    
+      deleteEvent(deleteEvent: Event): void{
+        this.eventService.deleteEvent(deleteEvent);
         this.ngRedux.dispatch({
           type: EventActions.DELETE_EVENT,
           payload: deleteEvent
