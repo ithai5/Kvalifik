@@ -25,10 +25,12 @@ export class EventListComponent implements OnInit {
 
   ngOnInit(): void {
     // Call to backend to get all events
+   
     this.eventActions.getEventList();
 
     this.ngRedux.select(state => state.eventState).subscribe(Response => {
       this.events = Response.eventList;
+      console.log(Response.eventList);
     })
 
     if(this.ngRedux.getState().userState.userInfo !== null){

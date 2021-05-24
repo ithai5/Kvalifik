@@ -44,7 +44,7 @@ export class EditEventComponent implements OnInit {
     this.event.value.createdDate = new Date();
     this.event.value.media = this.media;
     console.log(this.media);
-    this.eventActions.addEvent(this.editableEvent);
+    this.eventActions.addEvent(this.event.value);
     this.router.navigate(['/eventList/']);
   }
 

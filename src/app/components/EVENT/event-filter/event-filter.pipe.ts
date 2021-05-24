@@ -8,7 +8,10 @@ export class EventFilterPipe implements PipeTransform {
 
   transform(event: Event[], searchInput: string): Event[] {
     return event.filter(eventElement => 
-      eventElement.title.toLowerCase().includes(searchInput.toLowerCase()) || eventElement.content.toLowerCase().includes(searchInput.toLowerCase())) as Event[]
+      //console.log(eventElement)
+      eventElement.title.toLowerCase().includes(searchInput.toLowerCase())) as Event[]
+    
   }
-
 }
+
+//|| eventElement.content.toLowerCase().includes(searchInput.toLowerCase())

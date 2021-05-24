@@ -13,10 +13,13 @@ import {WebActivity} from '../../entities/web-activity';
 export class FeedComponent implements OnInit {
   webActivities: WebActivity[] = []
 
-  constructor(private postActions: PostActions, private eventActions: EventActions, private ngRedux: NgRedux<AppState>) { }
+  constructor(private postActions: PostActions, 
+              private eventActions: EventActions, 
+              private ngRedux: NgRedux<AppState>) { }
 
   ngOnInit(): void {
     //Load these lists into the Redux state (requires being logged in)
+    console.log("ngOnINIT")
     this.postActions.getPostList();
     this.eventActions.getEventList();
     
@@ -26,11 +29,13 @@ export class FeedComponent implements OnInit {
 
     //Instantiate postList with data from the state
     this.ngRedux.select(state => state.postState).subscribe(res => {
+      console.log("ngRedux Post state")
       postList = res.postList as WebActivity[];
     });
 
     //Instantiate eventList with data from the state
     this.ngRedux.select(state => state.eventState).subscribe(res => {
+      console.log("ngRedux Event State")
       eventList = res.eventList as WebActivity[];   
     });
     
