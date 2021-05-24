@@ -1,8 +1,9 @@
 .example-card {
-  max-width: 80%;
+  max-width: 60%;
   padding: 30px;
-  background-color: wheat;
-  margin: 25px;
+  background-color: #eaeaea;
+  margin-left: 20%;
+  margin-top: 20px;
 }
 img{
   max-height: 240px;
@@ -12,6 +13,5 @@ img{
   margin-left: 10%;
 }
 .example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
 }
