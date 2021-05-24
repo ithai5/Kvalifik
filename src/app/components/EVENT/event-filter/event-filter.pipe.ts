@@ -9,9 +9,11 @@ export class EventFilterPipe implements PipeTransform {
   transform(event: Event[], searchInput: string): Event[] {
     return event.filter(eventElement => 
       //console.log(eventElement)
-      eventElement.title.toLowerCase().includes(searchInput.toLowerCase())) as Event[]
+      //eventElement.title.toLowerCase().includes(searchInput.toLowerCase())) as Event[]
+      eventElement.title.toLowerCase().includes(searchInput.toLowerCase()) || eventElement.content.toLowerCase().includes(searchInput.toLowerCase())) as Event[]
     
   }
 }
 
 //|| eventElement.content.toLowerCase().includes(searchInput.toLowerCase())
+//   eventElement.title.toLowerCase().includes(searchInput.toLowerCase())

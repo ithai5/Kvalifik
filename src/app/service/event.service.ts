@@ -32,7 +32,7 @@ export class EventService extends ApiService{
     this.httpClient.patch(this.dbAccess(`Events/${event.id}`, this.ngRedux.getState().userState.userToken), event, this.getHttpHeader()).subscribe();
   }
   deleteEvent(event: Event): void{
-    this.httpClient.delete(this.dbAccess(`Posts/${event.id}/`, this.ngRedux.getState().userState.userToken), this.getHttpHeader()).subscribe();
+    this.httpClient.delete(this.dbAccess(`Events/${event.id}/`, this.ngRedux.getState().userState.userToken), this.getHttpHeader()).subscribe();
     //return this.events.splice(this.events.indexOf(this.getEventById(id)), 1)[0];
   }
 
