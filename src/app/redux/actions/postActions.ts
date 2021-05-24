@@ -67,7 +67,7 @@ export class PostActions {
         let post = value as Post;
         return {... post, id: key, createdDate: new Date(post.createdDate)}; // converting object into array
       })
-      
+
       this.ngRedux.dispatch({
         //call to post service
         type: PostActions.GET_POST_LIST_FOR_USER,

@@ -13,32 +13,35 @@ import {WebActivity} from '../../entities/web-activity';
 export class FeedComponent implements OnInit {
   webActivities: WebActivity[] = []
 
-  constructor(private postActions: PostActions, 
-              private eventActions: EventActions, 
+  constructor(private postActions: PostActions,
+              private eventActions: EventActions,
               private ngRedux: NgRedux<AppState>) { }
 
   ngOnInit(): void {
     //Load these lists into the Redux state (requires being logged in)
-    console.log("ngOnINIT")
+
     this.postActions.getPostList();
     this.eventActions.getEventList();
 
     //Declare separate lists for each type of WebActivity
     let postList: WebActivity[];
     let eventList: WebActivity[];
-
     //Instantiate postList with data from the state
-    
     postList = this.ngRedux.getState().postState.postList.map((post) => {
+      console.log("we got got new post: ",  post);
+      this.webActivities.push({... post, type: "post"})
+
+      console.log(post);
       return {... post, type: "post"};
     }) as WebActivity[];
+    console.log("I'm feed component post list: ", postList);
 
     this.webActivities = this.sortByDate([... postList, ... this.webActivities]);
     //Instantiate eventList with data from the state
     eventList = this.ngRedux.getState().eventState.eventList.map((event) => {
       return {... event, type: "event"};
     }) as WebActivity[];
-    
+
     this.webActivities = this.sortByDate([... eventList, ... this.webActivities])
 
     //Concat the two arrays, and instantiate webActivities with the combined data

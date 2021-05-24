@@ -24,9 +24,9 @@ export class PostListComponent implements OnInit {
 
   ngOnInit(): void {
     // need to make a call to the backend to get all posts
-    this.postActions.getPostListForUser();
-
-    this.postList = this.ngRedux.getState().postState.postList;
+    //this.postActions.getPostListForUser();
+    this.postActions.getPostList();
+    this.postList = this.ngRedux.getState().postState.postList.filter((post) => post.author === this.ngRedux.getState().userState.userInfo);
 
     if (this.ngRedux.getState().userState.userInfo !== null) {
       this.isLoggedIn = true;
