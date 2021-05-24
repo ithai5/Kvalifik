@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', [Validators.required])
   });
 
-  constructor(private httpClient: HttpClient, private userActions: UserActions, private router: Router) { }
+  constructor(private userActions: UserActions) { }
 
   ngOnInit(): void {
   }
@@ -32,9 +32,6 @@ export class LoginComponent implements OnInit {
       returnSecureToken: true,
     }
     this.userActions.login(userDetails)
-    setTimeout(() => {
-      this.router.navigate(["postList"]);
-    }, 5000);
   }
 
 }

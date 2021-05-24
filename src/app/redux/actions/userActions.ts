@@ -7,10 +7,12 @@ import { UserService } from 'src/app/service/user.service';
 import { UserState } from '../state/userState';
 import { EventActions } from './eventActions';
 import { PostActions } from './postActions';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root'})
 export class UserActions{
     constructor(private ngRedux: NgRedux<AppState>,
+      private router: Router,
       private authService: AuthService,
       private userService: UserService,
       private eventActions: EventActions,
@@ -26,19 +28,21 @@ export class UserActions{
 
 
     login(user: any): void {
-        this.authService.login(user).subscribe(res =>{
-          //Save the relevant info from UserState to Window.localStorage
-          this.authService.persistUserState( {
-            userInfo: res.email,
-            userToken: res.idToken,
-          } as UserState);
+      this.authService.login(user).subscribe(res =>{
+        //Save the relevant info from UserState to Window.localStorage
+        this.authService.persistUserState( {
+          userInfo: res.email,
+          userToken: res.idToken,
+        } as UserState);
 
-          this.ngRedux.dispatch({
-            type: UserActions.LOGIN,
-            payload: {userInfo: res.email, userToken: res.idToken},
-          });
-          
-        })
+        this.router.navigate(["postList"]);
+
+        this.ngRedux.dispatch({
+          type: UserActions.LOGIN,
+          payload: {userInfo: res.email, userToken: res.idToken},
+        });
+        
+      })
     }
 
     logout() {
