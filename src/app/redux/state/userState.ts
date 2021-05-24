@@ -1,6 +1,6 @@
 import { User } from '../../entities/user';
 export class UserState {
-    userInfo: User;
+    userInfo: string;
     userToken: string;
     userList: User[];
 }

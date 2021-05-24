@@ -1,16 +1,26 @@
 <mat-card class="example-card">
   <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
+    <!-- <div mat-card-avatar class="example-header-image"></div> THIS could be used to show a small profile image of the user--> 
     <mat-card-title>{{post.title}}</mat-card-title>
   </mat-card-header>
-  <img mat-card-image src="{{post.media}}" alt="">
+  <img mat-card-image src="{{post.media}}" alt="(Photo)">
   <mat-card-content>
     <p>
       {{post.content}}
     </p>
-    <img mat-card-image src="{{post.media[0]}}">
+    <p>
+      Date: {{post.createdDate | date: 'dd/MM/yyyy'}}
+    </p>
+    <p>
+      Responsible: {{post.author}}
+    </p>
+    <p>
+      Collection: {{post.collection}}
+    </p>
   </mat-card-content>
   <mat-card-actions>
-    <!-- <button mat-button>👍({{webActivity.likeCount}})</button>-->
+    <!-- <button mat-button>👍({{webActivity.likeCount}})</button> -->
+    <button mat-raised-button color="primary">👍({{post.likeCount}})</button>
   </mat-card-actions>
 </mat-card>
+

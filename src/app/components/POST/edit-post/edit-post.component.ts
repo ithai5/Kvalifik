@@ -6,6 +6,8 @@ import { PostActions } from '../../../redux/actions/postActions'
 import { AngularFireStorage } from '@angular/fire/storage';
 import { v4 as uuidv4 } from 'uuid';
 import {FirebaseStorageService} from '../../../service/firebase-storage.service';
+import { NgRedux } from '@angular-redux/store';
+import { AppState } from 'src/app/redux/state/appState';
 
 
 @Component({
@@ -22,13 +24,13 @@ export class EditPostComponent implements OnInit {
     title : new FormControl('', Validators.required),
     content : new FormControl('', Validators.required),
     picture : new FormControl(),
-
   });
 
   constructor(private route: ActivatedRoute,
     private postActions: PostActions,
     private router: Router,
-    private storage: FirebaseStorageService)
+    private storage: FirebaseStorageService,
+    private ngRedux: NgRedux<AppState>)
     {}
 
   ngOnInit(): void {
@@ -45,9 +47,11 @@ export class EditPostComponent implements OnInit {
   onSubmitCreate(): void{
     this.post.value.createdDate = new Date();
     this.post.value.media = this.media;
+    //we get the author from the ngRedux. from getState() we select the specific userState and thus get the userInfo (from userState)
+    this.post.value.author = this.ngRedux.getState().userState.userInfo;
+    
 
     // need to get the user that currently logged in and add it to the post author
-    console.log(this.media);
     this.postActions.addPost(this.post.value);
     this.router.navigate(['/postList/']);
   }

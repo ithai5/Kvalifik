@@ -10,6 +10,5 @@ export class WebActivity{
   createdDate: Date;
   collection: object []; /*might be that the post dont need to hold this info*/
   isPinned: boolean;
-  responsible: string []; /*represent owner of the post*/
-  author: User;
+  author: string;
 }
