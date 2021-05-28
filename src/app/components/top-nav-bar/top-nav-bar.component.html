@@ -5,14 +5,14 @@
 
 
   <span [style.cursor]="'pointer'" routerLink="/logout">
-    <button class="logout-button" *ngIf="isUserLoggedIn" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click)="logout()">
+    <button class="logout-button" *ngIf="isUserLoggedIn" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click)="logout()" id="logout-btn">
       Logout
     </button>
   </span>
 
     <span class="example-spacer"></span>
     <span [style.cursor]="'pointer'" routerLink="/signup">
-      <button *ngIf="!isUserLoggedIn" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <button id="sign-up-btn" *ngIf="!isUserLoggedIn" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
         Sign-up
       </button>
     </span>

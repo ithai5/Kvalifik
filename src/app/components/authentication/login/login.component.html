@@ -3,14 +3,14 @@
   <div>
     <mat-form-field class="example-full-width">
       <mat-label>Email:</mat-label>
-      <input matInput type="email" formControlName="email" placeholder="Write email here...">
+      <input id="email-login" matInput type="email" formControlName="email" placeholder="Write email here...">
   </mat-form-field>
   </div>
   <div>
     <mat-form-field class="example-full-width">
       <mat-label>Password:</mat-label>
-      <input matInput type="password" formControlName="password" placeholder="Password.">
+      <input id="password-login" matInput type="password" formControlName="password" placeholder="Password.">
     </mat-form-field>
   </div>
-    <button mat-raised-button color="primary" type="submit" [disabled]="!loginInfo.valid">Login</button>
+    <button id="submit-login" mat-raised-button color="primary" type="submit" [disabled]="!loginInfo.valid">Login</button>
 </form>
