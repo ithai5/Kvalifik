@@ -28,9 +28,11 @@ export class EventListComponent implements OnInit {
    
     this.eventActions.getEventList();
 
-    this.ngRedux.select(state => state.eventState).subscribe(Response => {
-      this.events = Response.eventList;
-    })
+    //this.postList = this.ngRedux.getState().postState.postList.filter((post) => post.author === this.ngRedux.getState().userState.userInfo);
+    this.events = this.ngRedux.getState().eventState.eventList.filter((event) => event.author === this.ngRedux.getState().userState.userInfo);
+    /* this.ngRedux.select(state => state.eventState).subscribe(response => {
+      this.events = response.eventList.filter(event => event.author === this.ngRedux.getState().userState.userInfo);
+    }) */
 
     if(this.ngRedux.getState().userState.userInfo !== null){
       this.isLoggedIn = true;
@@ -57,7 +59,8 @@ export class EventListComponent implements OnInit {
                                                 data: {
                                                   event: {
                                                     title: 'your title here', 
-                                                    content: 'content here mate'
+                                                    content: 'content here mate',
+                                                    location: 'CBS - Main Building'
                                                   }, 
                                                     toCreate: true
                                                   }

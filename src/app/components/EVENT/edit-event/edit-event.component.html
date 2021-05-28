@@ -9,10 +9,26 @@
         <mat-label>Text</mat-label>
         <textarea id="eventContent" matInput formControlName="content" [(ngModel)]="editableEvent.content"></textarea>
     </mat-form-field>
+    
+
+    <mat-form-field appearance="fill">
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate placeholder="Start date" formControlName="startDate" [(ngModel)]="editableEvent.startDate">
+          <input matEndDate placeholder="End date" formControlName="endDate" [(ngModel)]="editableEvent.endDate">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
 
     <div>
-        <input type="file" (change)="openDialog($event)" accept=".png, .jpg, .jpeg" />
+        <input type="file" (change)="openDialog($event)" accept=".png, .jpg, .jpeg"/>
     </div>
+
+    <mat-form-field class="example-full-width">
+        <mat-label>Location:</mat-label>
+        <textarea id="eventLocation" matInput formControlName="location" [(ngModel)]="editableEvent.location"></textarea>
+    </mat-form-field>
 
     <br>
     
@@ -27,3 +43,7 @@
     <button type="submit" *ngIf="toCreate" [disabled]="!event.controls.title.dirty || !event.controls.content.dirty" mat-raised-button color="primary" id="create-event-button" (click)="onSubmitCreate()">Save</button>
     <button type="submit" *ngIf="!toCreate" mat-raised-button (click)="onSubmitUpdate()" color="primary">Update</button>
 </form>
+
+<!-- [rangePicker]="campaignOnePicker"
+          [comparisonStart]="campaignTwo.value.start"
+          [comparisonEnd]="campaignTwo.value.end"> -->

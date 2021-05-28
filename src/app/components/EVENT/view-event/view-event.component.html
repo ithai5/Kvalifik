@@ -5,12 +5,22 @@
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>{{event.title}}</mat-card-title>
     </mat-card-header>
-    <img mat-card-image src="{{event.media}}" alt="">
+    
     <mat-card-content>
         <p>
             {{event.content}}
         </p>
-        <img mat-card-image src="{{event.media[0]}}">
+        <p>
+            {{event.startDate}}
+        </p>
+        <p>
+            {{event.endDate}}
+        </p>
+        <p>
+            {{event.location}}
+        </p>
+        <img mat-card-image src="{{event.media}}" alt="">
+        
     </mat-card-content> 
     <mat-card-actions>
         

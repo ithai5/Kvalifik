@@ -46,7 +46,7 @@ export class EventActions {
 
         eventList = Object.entries(res).map(([key, value]) => {
           let event = value as Event;
-          return {... event,  id: key, createdDate: new Date(event.createdDate)};
+          return {... event,  id: key, createdDate: new Date(event.createdDate), startDate: new Date(event.startDate), endDate: new Date(event.endDate)};
         });
 
         this.ngRedux.dispatch({
