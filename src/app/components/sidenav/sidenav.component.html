@@ -1,36 +1,38 @@
 <mat-selection-list [multiple]="false">
-  <mat-list-option routerLink="/feed">
+  <mat-list-option *ngIf="isUserLoggedIn" routerLink="/feed">
     <div>
       <mat-icon aria-hidden="false" aria-label="Example home icon" id="feed">calendar_view_day</mat-icon>
       Feed
     </div>
   </mat-list-option>
 
-  <mat-list-option routerLink="/postList">
+  <mat-list-option *ngIf="isUserLoggedIn" routerLink="/postList">
     <div>
       <mat-icon aria-hidden="false" aria-label="Example home icon" id="postList">view_quilt</mat-icon>
       Posts
     </div>
   </mat-list-option>
 
-  <mat-list-option routerLink="/eventList">
+  <mat-list-option *ngIf="isUserLoggedIn" routerLink="/eventList">
     <div>
       <mat-icon aria-hidden="false" aria-label="Example home icon" id="eventList">calendar_today</mat-icon>
       Events
     </div>
   </mat-list-option>
 
-  <mat-list-option routerLink="/collections">
+  <mat-list-option *ngIf="isUserLoggedIn" routerLink="/collections">
     <div>
       <mat-icon aria-hidden="false" aria-label="Example home icon" id="collections">library_books</mat-icon>
       Collections
     </div>
   </mat-list-option>
 
-  <mat-list-option routerLink="/users">
+<!--
+  <mat-list-option *ngIf="isUserLoggedIn" routerLink="/users">
     <div>
       <mat-icon aria-hidden="false" aria-label="Example home icon" id="users">supervised_user_circle</mat-icon>
       Users
     </div>
   </mat-list-option>
+-->
 </mat-selection-list>

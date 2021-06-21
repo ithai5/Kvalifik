@@ -35,9 +35,6 @@ export class UserActions{
           userToken: res.idToken,
         } as UserState);
         window.location.href = "/feed"
-/*
-        this.router.navigateByUrl('/feed')
-*/
         this.ngRedux.dispatch({
           type: UserActions.LOGIN,
           payload: {userInfo: res.email, userToken: res.idToken},

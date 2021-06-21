@@ -7,12 +7,13 @@ import {AppState} from './redux/state/appState';
 @Injectable({
   providedIn: 'root'
 })
-export class RouterGuard implements CanActivate {
+export class AuthUserGuard implements CanActivate {
   constructor(private ngRedux: NgRedux<AppState>) {
   }
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      return this.ngRedux.getState().userState.userInfo === null;
+    return this.ngRedux.getState().userState.userInfo !== null;
   }
+
 }

@@ -31,26 +31,21 @@ export class PostListComponent implements OnInit {
     if (this.ngRedux.getState().userState.userInfo !== null) {
       this.isLoggedIn = true;
     }
-
   }
 
-  timeForTable(stringDate: string): string {
-    const date: Date = new Date(stringDate);
-    return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
-  }
   viewPost(viewedPost: Post): void {
-    this.router.navigate(['/postList/:id'], {state: {data: {post: viewedPost}}});
+    this.router.navigate(['/postList/viewPost'], {state: {data: {post: viewedPost}}});
   }
   editPost(editablePost: Post): void {
       // VERY IMPORTANT LINE, THIS IS THE KEY POINT TO SUCCES, WITHOUT IT THE PROGRAM WOULDN'T WORK AT ALL
-        this.router.navigate(['/postList/edit/'], {state: {data: {post: editablePost, toCreate: false}}});
+    this.router.navigate(['/postList/edit/'], {state: {data: {post: editablePost, toCreate: false}}});
   }
 
   deletePost(post: Post): void{
     this.postActions.deletePost(post);
   }
 
-  createPost(): void { this.router.navigate(['/postList/edit/'], {state: {data: {post: {title: 'Your title here...', content: 'Your bla bla here...'}, toCreate: true}}});
+  createPost(): void { this.router.navigate(['/postList/edit/'], {state: {data: {post: {title: '', content: ''}, toCreate: true}}});
   }
 
 }

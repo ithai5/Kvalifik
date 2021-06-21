@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import {WebActivity} from '../../entities/web-activity';
 
@@ -9,7 +9,9 @@ import {WebActivity} from '../../entities/web-activity';
 })
 export class CardComponent implements OnInit {
 
-  @Input() webActivity: WebActivity
+  @Input() passedWebActivity: WebActivity
+
+
 
   constructor(private router: Router) { }
 
@@ -18,10 +20,10 @@ export class CardComponent implements OnInit {
   }
 
   goToView() {
-    if (this.webActivity.type === "post") {
-      this.router.navigate(['/postList/:id'], {state: {data: {post: this.webActivity}}});
+    if (this.passedWebActivity.type === "post") {
+      this.router.navigate(['/postList/viewPost'], {state: {data: {post: this.passedWebActivity}}});
     } else {
-      this.router.navigate(['/eventList/:id'], {state: {data: {event: this.webActivity}}});
+      this.router.navigate(['/eventList/viewEvent'], {state: {data: {event: this.passedWebActivity}}});
     }
   }
 

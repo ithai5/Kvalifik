@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { EventActions } from 'src/app/redux/actions/eventActions';
 import { AppState } from 'src/app/redux/state/appState';
 import { Event } from '../../../entities/event';
-import { EventService } from '../../../service/event.service'; 
+import { EventService } from '../../../service/event.service';
 
 @Component({
   selector: 'app-event-list',
@@ -17,15 +17,15 @@ export class EventListComponent implements OnInit {
   events: Event[];
   displayedColumns: String[] = ['title', 'startDate', 'location', 'status', 'edit'];
   public search: string = '';
-  
-  constructor(private eventService: EventService, 
+
+  constructor(private eventService: EventService,
               private router: Router,
-              private ngRedux: NgRedux<AppState>, 
+              private ngRedux: NgRedux<AppState>,
               private eventActions: EventActions) { }
 
   ngOnInit(): void {
     // Call to backend to get all events
-   
+
     this.eventActions.getEventList();
 
     //this.postList = this.ngRedux.getState().postState.postList.filter((post) => post.author === this.ngRedux.getState().userState.userInfo);
@@ -45,7 +45,7 @@ export class EventListComponent implements OnInit {
     return date.getDate() + '/' + date.getMonth() + 1 + '/' + date.getFullYear();
   }
   viewEvent(viewedEvent: Event): void{
-    this.router.navigate(['/eventList/:id'], {state: {data: {event: viewedEvent}}})
+    this.router.navigate(['/eventList/viewEvent'], {state: {data: {event: viewedEvent}}})
   }
   editEvent(editableEvent: Event): void {
     this.router.navigate(['/eventList/edit/'], {state: {data: {event: editableEvent, toCreate: false}}});
@@ -53,15 +53,15 @@ export class EventListComponent implements OnInit {
   deleteEvent(event: Event): void {
     this.eventActions.deleteEvent(event);
   }
-  
-  createEvent(): void { 
+
+  createEvent(): void {
     this.router.navigate(['/eventList/edit/'], {state: {
                                                 data: {
                                                   event: {
-                                                    title: 'your title here', 
+                                                    title: 'your title here',
                                                     content: 'content here mate',
                                                     location: 'CBS - Main Building'
-                                                  }, 
+                                                  },
                                                     toCreate: true
                                                   }
                                                 }

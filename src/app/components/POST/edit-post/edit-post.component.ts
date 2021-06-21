@@ -49,7 +49,7 @@ export class EditPostComponent implements OnInit {
     this.post.value.media = this.media;
     //we get the author from the ngRedux. from getState() we select the specific userState and thus get the userInfo (from userState)
     this.post.value.author = this.ngRedux.getState().userState.userInfo;
-    
+
 
     // need to get the user that currently logged in and add it to the post author
     this.postActions.addPost(this.post.value);

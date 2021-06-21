@@ -17,33 +17,28 @@ export class FeedComponent implements OnInit {
               private eventActions: EventActions,
               private ngRedux: NgRedux<AppState>) { }
 
-  ngOnInit(): void {
-    //Load these lists into the Redux state (requires being logged in)
-    this.postActions.getPostList();
-    this.eventActions.getEventList();
-    //Declare separate lists for each type of WebActivity
-    let postList: WebActivity[];
-    let eventList: WebActivity[];
-    //Instantiate postList with data from the state
-    postList = this.ngRedux.getState().postState.postList.map((post) => {
-      this.webActivities.push({... post, type: "post"})
-      return {... post, type: "post"};
-    }) as WebActivity[];
-    this.webActivities = this.sortByDate([... postList, ... this.webActivities]);
-    //Instantiate eventList with data from the state
-    eventList = this.ngRedux.getState().eventState.eventList.map((event) => {
-      return {... event, type: "event"};
-    }) as WebActivity[];
-    this.webActivities = this.sortByDate([... eventList, ... this.webActivities])
+   ngOnInit  (): void {
+     this.ngOnAsync()
+   }
 
-    //Concat the two arrays, and instantiate webActivities with the combined data
-    //this.webActivities = postList.concat(eventList);
+   output(string: string): void {
+     console.log(string);
+   }
+  async ngOnAsync() {
+    await this.postActions.getPostList();
+    await this.eventActions.getEventList();
+    await this.ngRedux.getState().postState.postList.forEach((post) => {
+      this.webActivities.push({... post, type: "post"})});
+    await this.ngRedux.getState().eventState.eventList.forEach((event) => {
+        this.webActivities.push({... event, type: "event"});
+      })
+   await this.sortByDate(this.webActivities)
   }
 
   sortByDate(webActivityList:  WebActivity[]){
     return webActivityList.sort((a,b) => {
-      if(a.createdDate < b.createdDate) return -1;
-      if (a.createdDate > b.createdDate) return 1;
+      if(a.createdDate < b.createdDate) return 1;
+      if (a.createdDate > b.createdDate) return -1;
       return 0;
     })
   }

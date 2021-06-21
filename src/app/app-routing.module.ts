@@ -12,21 +12,21 @@ import {FeedComponent} from './components/feed/feed.component';
 import {RouterGuard} from './router.guard';
 import { EditEventComponent } from './components/EVENT/edit-event/edit-event.component';
 import { ViewEventComponent } from './components/EVENT/view-event/view-event.component';
+import {AuthUserGuard} from './auth-user.guard';
 
 
 const routes: Routes = [
-  {path: 'eventList', component: EventListComponent},
-  {path: 'eventList/edit', component: EditEventComponent},
-  {path: 'eventList/:id', component: ViewEventComponent},
-  //{path: 'eventList', component: EditEventComponent},
-  {path: 'collections', component: CollectionsComponent},
-  {path: 'postList', component: PostListComponent},
-  {path: 'postList/edit', component: EditPostComponent},
-  {path: 'postList/:id', component: ViewPostComponent},
+  {path: 'eventList', component: EventListComponent, canActivate: [AuthUserGuard]},
+  {path: 'eventList/edit', component: EditEventComponent, canActivate: [AuthUserGuard]},
+  {path: 'eventList/viewEvent', component: ViewEventComponent},
+  {path: 'collections', component: CollectionsComponent, canActivate: [AuthUserGuard]},
+  {path: 'postList', component: PostListComponent, canActivate: [AuthUserGuard]},
+  {path: 'postList/edit', component: EditPostComponent, canActivate: [AuthUserGuard]},
+  {path: 'postList/viewPost', component: ViewPostComponent},
   {path: 'login', component: LoginComponent, canActivate: [RouterGuard]},
-  {path: 'signup', component: SignupComponent},
+  {path: 'signup', component: SignupComponent, canActivate: [RouterGuard]},
   {path: 'logout', redirectTo: 'postList'},
-  {path: 'users', component: UserListComponent},
+  //{path: 'users', component: UserListComponent, canActivate: [AuthUserGuard]}, doesn't have any functionality
   {path: 'feed', component: FeedComponent}
 
 ];
