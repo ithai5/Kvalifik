@@ -1,4 +1,4 @@
-import {Component, OnChanges, SimpleChanges} from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +8,9 @@ import {Component, OnChanges, SimpleChanges} from '@angular/core';
 export class AppComponent{
 
   title = 'Kvalifik';
+
+  constructor() {
+
+  }
 
 }

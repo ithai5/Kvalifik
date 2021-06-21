@@ -45,6 +45,7 @@ export class PostActions {
   getPostList(): void {
     this.postService.getPostList().subscribe(res => {
       let postList: Post[];
+      console.log("getPostList is executed");
 
       postList = Object.entries(res).map(([key, value])=>{
         let post = value as Post;

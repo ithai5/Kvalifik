@@ -4,6 +4,7 @@ import {NgRedux} from '@angular-redux/store';
 import {AppState} from '../../redux/state/appState';
 import {EventActions} from '../../redux/actions/eventActions';
 import {WebActivity} from '../../entities/web-activity';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-feed',
@@ -15,24 +16,19 @@ export class FeedComponent implements OnInit {
 
   constructor(private postActions: PostActions,
               private eventActions: EventActions,
-              private ngRedux: NgRedux<AppState>) { }
+              private ngRedux: NgRedux<AppState>,
+              private router: Router
+             ) { }
 
-   ngOnInit  (): void {
-     this.ngOnAsync()
-   }
-
-   output(string: string): void {
-     console.log(string);
-   }
-  async ngOnAsync() {
-    await this.postActions.getPostList();
-    await this.eventActions.getEventList();
-    await this.ngRedux.getState().postState.postList.forEach((post) => {
+  ngOnInit  (): void {
+    this.postActions.getPostList();
+    this.eventActions.getEventList();
+    this.ngRedux.getState().postState.postList.forEach((post) => {
       this.webActivities.push({... post, type: "post"})});
-    await this.ngRedux.getState().eventState.eventList.forEach((event) => {
-        this.webActivities.push({... event, type: "event"});
-      })
-   await this.sortByDate(this.webActivities)
+    this.ngRedux.getState().eventState.eventList.forEach((event) => {
+      this.webActivities.push({... event, type: "event"});
+    })
+    this.sortByDate(this.webActivities)
   }
 
   sortByDate(webActivityList:  WebActivity[]){

@@ -27,7 +27,6 @@ export class PostListComponent implements OnInit {
     //this.postActions.getPostListForUser();
     this.postActions.getPostList();
     this.postList = this.ngRedux.getState().postState.postList.filter((post) => post.author === this.ngRedux.getState().userState.userInfo);
-
     if (this.ngRedux.getState().userState.userInfo !== null) {
       this.isLoggedIn = true;
     }
@@ -43,6 +42,7 @@ export class PostListComponent implements OnInit {
 
   deletePost(post: Post): void{
     this.postActions.deletePost(post);
+    this.postList = this.ngRedux.getState().postState.postList.filter((post) => post.author === this.ngRedux.getState().userState.userInfo);
   }
 
   createPost(): void { this.router.navigate(['/postList/edit/'], {state: {data: {post: {title: '', content: ''}, toCreate: true}}});

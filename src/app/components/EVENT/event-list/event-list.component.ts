@@ -52,6 +52,7 @@ export class EventListComponent implements OnInit {
   }
   deleteEvent(event: Event): void {
     this.eventActions.deleteEvent(event);
+    this.events = this.ngRedux.getState().eventState.eventList.filter((event) => event.author === this.ngRedux.getState().userState.userInfo);
   }
 
   createEvent(): void {

@@ -10,7 +10,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { AppRoutingModule } from './app-routing.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { MatDatepickerModule } from '@angular/material/datepicker'; 
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
@@ -79,16 +79,16 @@ import { EventFilterPipe } from './components/EVENT/event-filter/event-filter.pi
         /** Material Inputs */
         MatButtonModule, MatToolbarModule, MatIconModule, MatListModule,
         AppRoutingModule, MatTableModule, MatFormFieldModule, MatSelectModule,
-        MatInputModule, MatDialogModule, ReactiveFormsModule, MatCardModule, MatDatepickerModule, 
+        MatInputModule, MatDialogModule, ReactiveFormsModule, MatCardModule, MatDatepickerModule,
         MatDatepickerModule, MatNativeDateModule,
-        
+
         /** -------------- */
         HttpClientModule,
         NgReduxModule,
 
         AngularFireStorageModule,
         AngularFireModule.initializeApp(environment.firebase, "cloud"),
-        
+
       NgReduxRouterModule.forRoot()
     ],
   providers: [MatDatepickerModule,],
