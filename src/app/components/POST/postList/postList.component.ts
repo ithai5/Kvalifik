@@ -25,8 +25,7 @@ export class PostListComponent implements OnInit {
   ngOnInit(): void {
     this.postActions.getPostListForUser();
     this.ngRedux.select(state => state.postState).subscribe(res => {
-      //this.postList = res.postList.filter((post) => post.author === this.ngRedux.getState().userState.userInfo);
-      this.postList = res.postList
+      this.postList = res.postList.filter((post) => post.author === this.ngRedux.getState().userState.userInfo);
 /*
       if (this.ngRedux.getState().userState.userInfo !== null) {
         this.isLoggedIn = true;
