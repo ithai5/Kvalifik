@@ -25,15 +25,10 @@ export class EventListComponent implements OnInit {
 
   ngOnInit(): void {
     // Call to backend to get all events
-
     this.eventActions.getEventList();
-
-    //this.postList = this.ngRedux.getState().postState.postList.filter((post) => post.author === this.ngRedux.getState().userState.userInfo);
-    this.events = this.ngRedux.getState().eventState.eventList.filter((event) => event.author === this.ngRedux.getState().userState.userInfo);
-    /* this.ngRedux.select(state => state.eventState).subscribe(response => {
+    this.ngRedux.select(state => state.eventState).subscribe(response => {
       this.events = response.eventList.filter(event => event.author === this.ngRedux.getState().userState.userInfo);
-    }) */
-
+    })
     if(this.ngRedux.getState().userState.userInfo !== null){
       this.isLoggedIn = true;
     }

@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {ApiService} from './api.service';
 import {NgRedux} from '@angular-redux/store';
 import {AppState} from '../redux/state/appState';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,8 @@ export class PostService extends ApiService{
   }
 
   //Creates a new post
-  createPost(post: Post): void{
-    this.httpClient.post(this.dbAccess("Posts", this.ngRedux.getState().userState.userToken), post, this.getHttpHeader()).subscribe();
+  createPost(post: Post): Observable<any>{
+    return this.httpClient.post(this.dbAccess("Posts", this.ngRedux.getState().userState.userToken), post, this.getHttpHeader())
   }
 
   //load post from Firebase
@@ -26,14 +27,14 @@ export class PostService extends ApiService{
     return this.httpClient.get(this.dbAccess("Posts",this.ngRedux.getState().userState.userToken), this.getHttpHeader());
   }
 
-  updatePost(post: Post): void {
+  updatePost(post: Post): Observable<any> {
 
-    this.httpClient.patch(this.dbAccess(`Posts/${post.id}`, this.ngRedux.getState().userState.userToken), post, this.getHttpHeader()).subscribe();
+    return this.httpClient.patch(this.dbAccess(`Posts/${post.id}`, this.ngRedux.getState().userState.userToken), post, this.getHttpHeader());
   }
 
-  deletePost(post: Post): void {
+  deletePost(post: Post): Observable<any> {
     //This method requires the .subscribe() part, otherwise the database doesn't change
-    this.httpClient.delete(this.dbAccess(`Posts/${post.id}/`, this.ngRedux.getState().userState.userToken), this.getHttpHeader()).subscribe();
+    return this.httpClient.delete(this.dbAccess(`Posts/${post.id}/`, this.ngRedux.getState().userState.userToken), this.getHttpHeader());
   }
 
   getPostListForUser(): any {

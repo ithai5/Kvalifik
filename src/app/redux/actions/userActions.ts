@@ -39,7 +39,6 @@ export class UserActions{
           type: UserActions.LOGIN,
           payload: {userInfo: res.email, userToken: res.idToken},
         });
-
       })
     }
 

@@ -16,50 +16,47 @@ export class PostActions {
   static GET_POST_LIST_FOR_USER = 'GET_POST_LIST_FOR_USER';
   static CLEAR_LIST = 'CLEAR_LIST';
 
-  addPost(post: Post): void {
-    this.postService.createPost(post);
-    this.ngRedux.dispatch({
-      type: PostActions.ADD_POST,
-      payload: post,
-    });
-  }
-
-  updatePost(updatePost: Post): void{
-    this.postService.updatePost(updatePost);
-
-    this.ngRedux.dispatch({
-      type: PostActions.UPDATE_POST,
-      payload: updatePost
-    });
-  }
-
-  deletePost(deletePost: Post): void{
-    this.postService.deletePost(deletePost);
-
-    this.ngRedux.dispatch({
-      type: PostActions.DELETE_POST,
-      payload: deletePost
-    });
-  }
 
   getPostList(): void {
     this.postService.getPostList().subscribe(res => {
       let postList: Post[];
-      console.log("getPostList is executed");
-
       postList = Object.entries(res).map(([key, value])=>{
         let post = value as Post;
         return {... post, id: key, createdDate: new Date(post.createdDate)}; // converting object into array
       })
-
       this.ngRedux.dispatch({
-        //call to post service
         type: PostActions.GET_POST_LIST,
         payload: postList
       });
     });
   }
 
+  addPost(post: Post): void {
+    this.postService.createPost(post).subscribe((res) => {
+      this.ngRedux.dispatch({
+        type: PostActions.ADD_POST,
+        payload: post,
+      });
+    });
+  }
+
+  updatePost(updatePost: Post): void{
+    this.postService.updatePost(updatePost).subscribe((res) => {
+      this.ngRedux.dispatch({
+        type: PostActions.UPDATE_POST,
+        payload: updatePost
+      });
+    });
+  }
+
+  deletePost(deletePost: Post): void{
+    this.postService.deletePost(deletePost).subscribe((res) => {
+      this.ngRedux.dispatch({
+        type: PostActions.DELETE_POST,
+        payload: deletePost
+      });
+    });
+  }
   getPostListForUser(): void {
     this.postService.getPostListForUser().subscribe(res => {
       let postList: Post[];

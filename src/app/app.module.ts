@@ -71,6 +71,7 @@ import { EventFilterPipe } from './components/EVENT/event-filter/event-filter.pi
     CardComponent,
     TopNavBarComponent,
     EventFilterPipe,
+
   ],
     imports: [
         BrowserModule,

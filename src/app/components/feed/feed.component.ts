@@ -23,12 +23,11 @@ export class FeedComponent implements OnInit {
   ngOnInit  (): void {
     this.postActions.getPostList();
     this.eventActions.getEventList();
-    this.ngRedux.getState().postState.postList.forEach((post) => {
-      this.webActivities.push({... post, type: "post"})});
-    this.ngRedux.getState().eventState.eventList.forEach((event) => {
-      this.webActivities.push({... event, type: "event"});
+    this.ngRedux.select(state => state).subscribe(res => {
+      this.webActivities = []
+      this.webActivities.push(... res.postState.postList, ... res.eventState.eventList);
+      this.sortByDate(this.webActivities)
     })
-    this.sortByDate(this.webActivities)
   }
 
   sortByDate(webActivityList:  WebActivity[]){

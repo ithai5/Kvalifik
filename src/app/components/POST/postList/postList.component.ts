@@ -23,26 +23,24 @@ export class PostListComponent implements OnInit {
               }
 
   ngOnInit(): void {
-    // need to make a call to the backend to get all posts
-    //this.postActions.getPostListForUser();
     this.postActions.getPostList();
-    this.postList = this.ngRedux.getState().postState.postList.filter((post) => post.author === this.ngRedux.getState().userState.userInfo);
-    if (this.ngRedux.getState().userState.userInfo !== null) {
-      this.isLoggedIn = true;
-    }
+    this.ngRedux.select(state => state.postState).subscribe(res => {
+      this.postList = res.postList.filter((post) => post.author === this.ngRedux.getState().userState.userInfo);
+      if (this.ngRedux.getState().userState.userInfo !== null) {
+        this.isLoggedIn = true;
+      }
+    })
   }
 
   viewPost(viewedPost: Post): void {
     this.router.navigate(['/postList/viewPost'], {state: {data: {post: viewedPost}}});
   }
   editPost(editablePost: Post): void {
-      // VERY IMPORTANT LINE, THIS IS THE KEY POINT TO SUCCES, WITHOUT IT THE PROGRAM WOULDN'T WORK AT ALL
     this.router.navigate(['/postList/edit/'], {state: {data: {post: editablePost, toCreate: false}}});
   }
 
   deletePost(post: Post): void{
     this.postActions.deletePost(post);
-    this.postList = this.ngRedux.getState().postState.postList.filter((post) => post.author === this.ngRedux.getState().userState.userInfo);
   }
 
   createPost(): void { this.router.navigate(['/postList/edit/'], {state: {data: {post: {title: '', content: ''}, toCreate: true}}});
