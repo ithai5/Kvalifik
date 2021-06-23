@@ -40,7 +40,7 @@ export class PostService extends ApiService{
   getPostListForUser(): any {
     const parameters: string = this.ngRedux.getState().userState.userToken + "&orderBy=\"author\"" +
     "&equalTo=\"" + this.ngRedux.getState().userState.userInfo + "\"";
-
+    console.log(this.dbAccess("Posts", parameters));
     return this.httpClient.get(this.dbAccess("Posts", parameters), this.getHttpHeader());
   }
 }

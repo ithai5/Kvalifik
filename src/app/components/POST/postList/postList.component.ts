@@ -12,7 +12,7 @@ import { PostActions } from '../../../redux/actions/postActions';
 })
 export class PostListComponent implements OnInit {
   //Disable func if not logged in
-  isLoggedIn: boolean = false;
+/*  isLoggedIn: boolean = false;*/
   postList: Post[];
   displayedColumns: string [] = ['title', 'createdDate', 'likeCount' , 'status', 'edit'];
   public search: string = '';
@@ -23,12 +23,15 @@ export class PostListComponent implements OnInit {
               }
 
   ngOnInit(): void {
-    this.postActions.getPostList();
+    this.postActions.getPostListForUser();
     this.ngRedux.select(state => state.postState).subscribe(res => {
-      this.postList = res.postList.filter((post) => post.author === this.ngRedux.getState().userState.userInfo);
+      //this.postList = res.postList.filter((post) => post.author === this.ngRedux.getState().userState.userInfo);
+      this.postList = res.postList
+/*
       if (this.ngRedux.getState().userState.userInfo !== null) {
         this.isLoggedIn = true;
       }
+*/
     })
   }
 

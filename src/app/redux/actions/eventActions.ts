@@ -13,6 +13,7 @@ export class EventActions {
     static DELETE_EVENT = 'DELETE_EVENT';
     static GET_EVENT_LIST = 'GET_EVENT_LIST';
     static CLEAR_LIST = 'CLEAR_LIST';
+    static GET_EVENT_LIST_FOR_USER = 'GET_EVENT_LIST_FOR_USER';
 
     addEvent(event: Event): void {
         this.eventService.createEvent(event);
@@ -21,7 +22,7 @@ export class EventActions {
             payload: event,
         })
     }
-    
+
     updateEvent(updateEvent: Event): void{
         this.eventService.updateEvent(updateEvent);
 
@@ -30,7 +31,7 @@ export class EventActions {
           payload: updateEvent
         });
     }
-    
+
       deleteEvent(deleteEvent: Event): void{
         this.eventService.deleteEvent(deleteEvent);
         this.ngRedux.dispatch({
@@ -41,9 +42,7 @@ export class EventActions {
 
     getEventList(): void{
       this.eventService.getEventList().subscribe(res => {
-
         let eventList: Event[];
-
         eventList = Object.entries(res).map(([key, value]) => {
           let event = value as Event;
           return {... event,  id: key, createdDate: new Date(event.createdDate), startDate: new Date(event.startDate), endDate: new Date(event.endDate)};
@@ -55,8 +54,22 @@ export class EventActions {
         });
       });
     }
+  getEventListForUser(): void {
+      this.eventService.getEventListForUser().subscribe(res => {
+        let eventList: Event [];
+        eventList = Object.entries(res).map(([key, value]) => {
+          let event = value as Event;
+          return {... event,  id: key, createdDate: new Date(event.createdDate), startDate: new Date(event.startDate), endDate: new Date(event.endDate)};
+        })
+        this.ngRedux.dispatch({
+          type: EventActions.GET_EVENT_LIST_FOR_USER,
+          payload: eventList
+        })
+      })
+  }
 
-    clearList(): void {
+
+  clearList(): void {
       this.ngRedux.dispatch({
         type: EventActions.CLEAR_LIST,
       });

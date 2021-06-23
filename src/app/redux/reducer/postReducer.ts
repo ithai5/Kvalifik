@@ -9,8 +9,10 @@ export const INITIAL_STATE: PostState = {
 
 export function postReducer(state: PostState = INITIAL_STATE, action: any): any {
   switch (action.type) {
+
       case PostActions.ADD_POST:
         return tassign(state, { postList: state.postList.concat(action.payload) });
+
       case PostActions.UPDATE_POST:
         return tassign(state, { postList: state.postList.map(post => {
           if (post.id === action.payload.id){
@@ -21,6 +23,7 @@ export function postReducer(state: PostState = INITIAL_STATE, action: any): any 
             }
           })
         });
+
       case PostActions.DELETE_POST:
         return tassign(state, { postList: state.postList.filter(post => {
           if (post.id !== action.payload.id) { return post; }
